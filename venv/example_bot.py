@@ -7,13 +7,12 @@ import youtube_dl
 import os
 import random
 
-TOKEN = '' # BOT TOKEN HERE
+TOKEN = '' # Bot token here
 BOT_PREFIX = 't!'
 IMAGE_FOLDER = 'images/'
+playlist = []
 
 bot = commands.Bot(command_prefix=BOT_PREFIX)
-
-players = {}
 
 ##############################     GENERAL COMMANDS     ##############################
 
@@ -33,10 +32,14 @@ async def ping(ctx):
 
 @bot.command()
 async def join(ctx):
-    channel = ctx.message.author.voice.channel
-    await channel.connect()
-    print(f'Joined {channel}')
-    await ctx.send(f"Joined \'{channel}\' channel.")
+    isConnected = ctx.message.author.voice is not None
+    if isConnected:
+        channel = ctx.message.author.voice.channel
+        await channel.connect()
+        print(f'Joined {channel}')
+        await ctx.send(f"Joined \'{channel}\' channel.")
+    else:
+        await ctx.send("You're not in a voice channel")
 
 
 @bot.command()
@@ -45,16 +48,25 @@ async def leave(ctx):
     await ctx.send(f"Left {server}")
     await server.disconnect()
 
+@bot.command(name="id")
+async def getID(ctx):
+    await ctx.send(ctx.author.id)
+
+
 ##############################     AUDIO COMMANDS    ##############################
 
 @bot.command()
 async def connected(ctx):
     voice = get(bot.voice_clients, guild=ctx.guild)
-    if voice.is_connected():
+    if voice is None:
+        await ctx.send("Not connected")
+    elif voice.is_connected():
         await ctx.send("Connected...")
 
 @bot.command(pass_context=True, aliases=['p'])
 async def play(ctx, url: str):
+
+    ###### Setup ######
 
     musicFolder = os.getcwd() + '\music'
     name = ''
@@ -75,23 +87,48 @@ async def play(ctx, url: str):
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         print("Downloading song...")
-        ydl.download([url])
         info_dict = ydl.extract_info(url, download=False)
-        video_url = info_dict.get("url", None)  # Temp google video file
         video_id = info_dict.get("id", None)
         video_title = info_dict.get('title', None)
-        print(f"\nVideo Info:\nURL: {video_url}\nID: {video_id}\nTitle: {video_title}\n") # DEBUG
+        print(f"\nVideo Info:\nID: {video_id}\nTitle: {video_title}\n") # DEBUG
+
+    ###### Play ######
 
     fileName = musicFolder + '\\' + video_title + '-' + video_id + ".mp3"
-    print(f"Path found: {os.path.isdir(musicFolder)}")
+    playlist.append(fileName)
+    if not os.path.exists(fileName):
+        print("DEBUG: File doesn't exist. Downloading...")
+        ydl.download([url])
 
-    voice.play(discord.FFmpegPCMAudio(fileName), after=lambda e: print(f"{fileName} finished downloading."))
+    if voice is None:
+        if ctx.message.author.voice is not None:
+            channel = ctx.message.author.voice.channel
+            await channel.connect()
+            voice = get(bot.voice_clients, guild=ctx.guild)
+        else:
+            await ctx.send("Either me or you are not in a voice channel")
+            return
+    voice.play(discord.FFmpegPCMAudio(fileName), after=lambda e: print(f"{fileName} finished playing."))
     voice.source = discord.PCMVolumeTransformer(voice.source)
     voice.source.volume = 0.2
 
     await bot.change_presence(status=discord.Status.idle, activity=discord.Game(video_title))
     await ctx.send(f"Playing: {video_title}")
-    print("Playing")
+    print("Playing...")
+
+@bot.command()
+async def pause(ctx):
+    voice = get(bot.voice_clients, guild=ctx.guild)
+    if voice is not None and voice.is_playing():
+        voice.pause()
+        await ctx.send("Paused")
+
+@bot.command()
+async def resume(ctx):
+    voice = get(bot.voice_clients, guild=ctx.guild)
+    if voice is not None and voice.is_paused():
+        voice.resume()
+        await ctx.send(f"Resumed playing {voice.source}")
 
 @bot.command(pass_context=True, aliases=['vol'])
 async def volume(ctx, vol: int):
