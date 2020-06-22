@@ -6,11 +6,20 @@ from discord.utils import get
 import youtube_dl
 import os
 import random
+import concurrent.futures
 
-TOKEN = '' # Bot token here
+from SongObj import Song
+from SoundObj import Sound
+
+TOKEN = 'MTg1MTExODg4NDU4Mjg1MDU2.XuKFZg.dHtaKgUBzhwYqYS76oaU9ZhJNQA' # Bot token here
 BOT_PREFIX = 't!'
 IMAGE_FOLDER = 'images/'
 playlist = []
+playing = False
+song_playing = None
+music_folder = os.getcwd() + '\music'
+sound_folder = os.getcwd() + '\sounds\\'
+
 
 bot = commands.Bot(command_prefix=BOT_PREFIX)
 
@@ -67,12 +76,9 @@ async def connected(ctx):
 async def play(ctx, url: str):
 
     ###### Setup ######
-
-    musicFolder = os.getcwd() + '\music'
     name = ''
 
     await ctx.send("Loading song...")
-    print(f"Music folder is: {musicFolder}")
 
     voice = get(bot.voice_clients, guild=ctx.guild)
     ydl_opts = {
@@ -90,12 +96,12 @@ async def play(ctx, url: str):
         info_dict = ydl.extract_info(url, download=False)
         video_id = info_dict.get("id", None)
         video_title = info_dict.get('title', None)
-        print(f"\nVideo Info:\nID: {video_id}\nTitle: {video_title}\n") # DEBUG
+        print(f"\n### Played ###\nVideo Info:\nID: {video_id}\nTitle: {video_title}\n") # DEBUG
 
     ###### Play ######
 
-    fileName = musicFolder + '\\' + video_title + '-' + video_id + ".mp3"
-    playlist.append(fileName)
+    fileName = music_folder + '\\' + video_title + '-' + video_id + ".mp3"
+    playlist.append(Song(video_title, video_id, url, fileName))
     if not os.path.exists(fileName):
         print("DEBUG: File doesn't exist. Downloading...")
         ydl.download([url])
@@ -108,13 +114,44 @@ async def play(ctx, url: str):
         else:
             await ctx.send("Either me or you are not in a voice channel")
             return
-    voice.play(discord.FFmpegPCMAudio(fileName), after=lambda e: print(f"{fileName} finished playing."))
+    voice.play(discord.FFmpegPCMAudio(playlist[0].file), after=lambda e: print(f"{video_title} finished playing."))
     voice.source = discord.PCMVolumeTransformer(voice.source)
     voice.source.volume = 0.2
 
     await bot.change_presence(status=discord.Status.idle, activity=discord.Game(video_title))
     await ctx.send(f"Playing: {video_title}")
     print("Playing...")
+
+@bot.command()
+async def queue(ctx, url: str):
+    ydl_opts = {
+        'outtmpl': 'music/%(title)s-%(id)s.%(ext)s',  # TODO: Fix this
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(url, download=False)
+        video_id = info_dict.get("id", None)
+        video_title = info_dict.get('title', None)
+        print(f"\n### Queued ### \nVideo Info:\nID: {video_id}\nTitle: {video_title}\n") # DEBUG
+
+    ###### Queue ######
+
+    file_name = music_folder + '\\' + video_title + '-' + video_id + ".mp3"
+    playlist.append(Song(video_title, video_id, url, file_name))
+
+@bot.command(pass_context=True, aliases=['np'])
+async def current(ctx):
+    index = 1
+    if len(playlist) == 0:
+        await ctx.send("No songs in playlist")
+    else:
+        for index, song in enumerate(playlist):
+            await ctx.send(f"{index}. {song.title}")
 
 @bot.command()
 async def pause(ctx):
@@ -142,5 +179,71 @@ async def volume(ctx, vol: int):
 @bot.command()
 async def jerry(ctx):
     await ctx.send('jERry', file=discord.File(IMAGE_FOLDER + 'jerry.jpg'))
+
+@bot.command(pass_context=True, aliases=['s'])
+async def sound(ctx, *args):
+    soundlist = {
+        "horn": Sound("horn", sound_folder + "airhorn.mp3", "MLG airhorn - Once"),
+        "wow": Sound("wow", sound_folder + "anime_wow.mp3", "Japanese wow~"),
+        "bullyme": Sound("bullyme", sound_folder + "bully_me.mp3", "Why you bully me"),
+        "clench": Sound("clech", sound_folder + "clench.mp3", "Clench the butt cheeks"),
+        "deez": Sound("deez", sound_folder + "deez_nuts.mp3", "Deez Nuts"),
+        "discnotif": Sound("discnotif", sound_folder + "disc_notif.mp3", "Discord notification sound"),
+        "nope": Sound("nope", sound_folder + "engi_nope.mp3", "engineer's nope.avi"),
+        "fastaf": Sound("fastaf", sound_folder + "fast_af.mp3", "I'm fast AF boi"),
+        "grapefruit": Sound("grapefruit", sound_folder + "grapefruit.mp3", "KWWHEKEWWHKWHKWHE"),
+        "hourlater": Sound("hourlater", sound_folder + "hour_later.mp3", "One hour later..."),
+        "mlghorn": Sound("mlghorn", sound_folder + "mlg_horn.mp3", "MLG airhorn"),
+        "notfunny": Sound("notfunny", sound_folder + "not_funny.mp3", "Not funny, didn't laugh"),
+        "ohmygah": Sound("ohmygah", sound_folder + "oh_my_gah.mp3", "Oh my gah"),
+        "oof": Sound("oof", sound_folder + "oof.mp3", "OOF"),
+        "pbb": Sound("pbb", sound_folder + "pbb.mp3", "\"Does that feel good?\""),
+        "pika": Sound("pika", sound_folder + "pika.mp3", "Pika pika~~~"),
+        "prettygood": Sound("prettygood", sound_folder + "pretty_good.mp3", "Hey, thta's pretty good."),
+        "risitas": Sound("risitas", sound_folder + "risitas.mp3", "JESUS, AHHHH AH AH AH"),
+        "skype": Sound("skype", sound_folder + "skype_call.mp3", "Skype call tone"),
+        "snort": Sound("snort", sound_folder + "snort.mp3", "The Spy's mating call"),
+        "succ": Sound("succ", sound_folder + "succ.mp3", "SUCC"),
+        "tidus": Sound("tidus", sound_folder + "tidus.mp3", "AH HAH HAH HAH"),
+        "triple": Sound("triple", sound_folder + "triple.mp3", "Oh baby a triple"),
+        "typing": Sound("typing", sound_folder + "typing.mp3", "*type noises intesify*"),
+        "weakhorn": Sound("weakhorn", sound_folder + "weak_horn.mp3", "Sad air horn"),
+        "whoa": Sound("whoa", sound_folder + "woah.mp3", "Whoa? whoa... WHOA WHOA WHOA WHOA"),
+        "wow": Sound("wow", sound_folder + "wow.mp3", "Wow."),
+        "wronghouse": Sound("wronghouse", sound_folder + "wrong_house.mp3", "You came to the wrong house foo!"),
+        "yeahboi": Sound("yeahboi", sound_folder + "yeah_boi.mp3", "Yeah boiiiiiiiiiiiiiiiiii"),
+        "yeet": Sound("yeet", sound_folder + "yeet.mp3", "Swaggersoul's yeet"),
+        "subaluwa": Sound("subaluwa", sound_folder + "subaluwa.mp3", "Iconic Ed, Edd, n Eddy sumo noise"),
+        "dude": Sound("dude", sound_folder + "dude.mp3", "How's it goin' dude?")
+    }
+    default_vol = 0.20
+    sound = args[0]
+    try:
+        vol = (float)(args[1]) / 100
+        print(f"DEBUG: set volume to {vol}")
+    except IndexError:
+        print(f"DEBUG: set volume to {default_vol}")
+        vol = default_vol
+
+    if sound == 'help' or sound == 'h':
+        embed = discord.Embed(
+            title="Sound commands:",
+            description="t!s [sound] [volume (0 - 200)]",
+            color=discord.Colour.teal()
+        )
+        for key, value in soundlist.items():
+            embed.add_field(name=soundlist[key].name, value=soundlist[key].desc, inline=False)
+        await ctx.send(embed=embed)
+    else:
+        voice = get(bot.voice_clients, guild=ctx.guild)
+        if voice is None:
+            if ctx.message.author.voice is not None:
+                channel = ctx.message.author.voice.channel
+                await channel.connect()
+                voice = get(bot.voice_clients, guild=ctx.guild)
+            else:
+                await ctx.send("Either me or you are not in a voice channel")
+                return
+        voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(soundlist[sound].file), vol), after=None)
 
 bot.run(TOKEN)
