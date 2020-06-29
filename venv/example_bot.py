@@ -87,10 +87,9 @@ async def getID(ctx):
 ##############################     AUDIO COMMANDS    ##############################
 
 class YTDLSource(discord.PCMVolumeTransformer):
-
     def __init__(self, source, *, data, requester):
         super().__init__(source)
-        self.requester = requester  # Not quite sure what this is
+        self.requester = requester
 
         self.title = data.get('title')
         self.web_url = data.get('webpage_url')
