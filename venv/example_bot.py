@@ -4,14 +4,18 @@ from discord.ext.commands import Bot
 from discord.utils import get
 
 import youtube_dl
+from youtube_dl import YoutubeDL
 import os
 import random
 import concurrent.futures
+import asyncio
 
 from SongObj import Song
 from SoundObj import Sound
 
-TOKEN = 'MTg1MTExODg4NDU4Mjg1MDU2.XuKFZg.dHtaKgUBzhwYqYS76oaU9ZhJNQA' # Bot token here
+################ GLOBAL VARIABLES ################
+
+TOKEN = '' # Bot token here
 BOT_PREFIX = 't!'
 IMAGE_FOLDER = 'images/'
 playlist = []
@@ -19,6 +23,24 @@ playing = False
 song_playing = None
 music_folder = os.getcwd() + '\music'
 sound_folder = os.getcwd() + '\sounds\\'
+queue = asyncio.Queue()
+event = asyncio.Event()
+
+################ YTDL VARIABLES ################
+
+ydl_opts = {
+    'outtmpl': 'music/%(title)s-%(id)s.%(ext)s',  # TODO: Fix this
+    'format': 'bestaudio/best',
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }],
+}
+
+ydl = YoutubeDL(ydl_opts)
+
+################  ################
 
 
 bot = commands.Bot(command_prefix=BOT_PREFIX)
@@ -64,6 +86,43 @@ async def getID(ctx):
 
 ##############################     AUDIO COMMANDS    ##############################
 
+class YTDLSource(discord.PCMVolumeTransformer):
+
+    def __init__(self, source, *, data, requester):
+        super().__init__(source)
+        self.requester = requester  # Not quite sure what this is
+
+        self.title = data.get('title')
+        self.web_url = data.get('webpage_url')
+
+    @classmethod
+    async def create_source(cls, ctx, url: str, *, loop, download=False):
+        loop = loop or asyncio.get_event_loop()
+
+        data_to_run = partial(ydl.extract_info, url=url, download=download)
+        data = await loop.run_in_executor(None, data_to_run)
+
+        if 'entries' in data:
+            data = data['entries'][0]
+
+        await ctx.send(f"Added {data['title']} to queue.")
+
+        if download:
+            source = ydl.prepare_filename(data)
+        else:
+            return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
+
+        return cls(discord.FFmpegPCMAudio(source), data=data, requester=ctx.author)
+
+    @classmethod
+    async def prepare_stream(clscls, data, *, loop):
+        loop = loop or asyncio.get_event_loop()
+        requester = data['requester']
+
+        data_to_run = partial(ytdl.extract_info, url=data['webpage_url'], download=False)
+        data = await loop.run_in_executor(None, data_to_run)
+        return cls(discord.FFmpegPCMAudio(data['url']), data=data, requester=requester)
+
 @bot.command()
 async def connected(ctx):
     voice = get(bot.voice_clients, guild=ctx.guild)
@@ -76,27 +135,13 @@ async def connected(ctx):
 async def play(ctx, url: str):
 
     ###### Setup ######
-    name = ''
-
     await ctx.send("Loading song...")
 
-    voice = get(bot.voice_clients, guild=ctx.guild)
-    ydl_opts = {
-        'outtmpl': 'music/%(title)s-%(id)s.%(ext)s',  # TODO: Fix this
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-    }
-
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with ydl:
         print("Downloading song...")
         info_dict = ydl.extract_info(url, download=False)
         video_id = info_dict.get("id", None)
         video_title = info_dict.get('title', None)
-        print(f"\n### Played ###\nVideo Info:\nID: {video_id}\nTitle: {video_title}\n") # DEBUG
 
     ###### Play ######
 
@@ -106,14 +151,16 @@ async def play(ctx, url: str):
         print("DEBUG: File doesn't exist. Downloading...")
         ydl.download([url])
 
-    if voice is None:
-        if ctx.message.author.voice is not None:
+    voice = get(bot.voice_clients, guild=ctx.guild)
+    if not voice:
+        try:
             channel = ctx.message.author.voice.channel
             await channel.connect()
             voice = get(bot.voice_clients, guild=ctx.guild)
-        else:
-            await ctx.send("Either me or you are not in a voice channel")
-            return
+        except AttributeError:
+            await ctx.send("No channel to join. Please join one.")
+            raise Exception("No channel to join. Please join one.")
+
     voice.play(discord.FFmpegPCMAudio(playlist[0].file), after=lambda e: print(f"{video_title} finished playing."))
     voice.source = discord.PCMVolumeTransformer(voice.source)
     voice.source.volume = 0.2
@@ -124,16 +171,7 @@ async def play(ctx, url: str):
 
 @bot.command()
 async def queue(ctx, url: str):
-    ydl_opts = {
-        'outtmpl': 'music/%(title)s-%(id)s.%(ext)s',  # TODO: Fix this
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with ydl:
         info_dict = ydl.extract_info(url, download=False)
         video_id = info_dict.get("id", None)
         video_title = info_dict.get('title', None)
