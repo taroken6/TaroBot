@@ -19,8 +19,6 @@ TOKEN = '' # Bot token here
 BOT_PREFIX = 't!'
 IMAGE_FOLDER = 'images/'
 playlist = []
-playing = False
-song_playing = None
 music_folder = os.getcwd() + '\music'
 sound_folder = os.getcwd() + '\sounds\\'
 
@@ -39,7 +37,6 @@ ydl_opts = {
 ydl = YoutubeDL(ydl_opts)
 
 ################  ################
-
 
 bot = commands.Bot(command_prefix=BOT_PREFIX)
 
@@ -156,7 +153,8 @@ class MusicPlayer:
     def destroy(self, guild):
         return self.bot.loop.create_task(self.cog.cleanup(guild))
 
-##############################     AUDIO COMMANDS    ##############################
+##############################     VOICE COMMANDS    ##############################
+
 class Voice:
     def __init__(self, bot):
         self.bot = bot
