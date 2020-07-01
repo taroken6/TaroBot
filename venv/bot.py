@@ -5,10 +5,13 @@ from discord.utils import get
 
 import youtube_dl
 from youtube_dl import YoutubeDL
+
+from functools import partial
 import os
 import random
 import concurrent.futures
 import asyncio
+from async_timeout import timeout
 
 from SongObj import Song
 from SoundObj import Sound
@@ -39,6 +42,7 @@ ydl = YoutubeDL(ydl_opts)
 ################  ################
 
 bot = commands.Bot(command_prefix=BOT_PREFIX)
+bot.remove_command('connect')
 
 ##############################     GENERAL COMMANDS     ##############################
 
@@ -155,10 +159,10 @@ class MusicPlayer:
 
 ##############################     VOICE COMMANDS    ##############################
 
-class Voice:
+class Voice(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.guilds = {}
+        self.players = {}
 
     async def cleanup(self, guild):
         try:
@@ -171,8 +175,17 @@ class Voice:
         except KeyError:
             pass
 
-    @bot.command(name='connect', aliases=['join'])
-    async def connect(ctx):
+    def get_player(self, ctx):
+        try:
+            player = self.players[ctx.guild.id]
+        except KeyError:
+            print("DEBUG: Music player not found... Creating new...")
+            player = MusicPlayer(ctx)
+            self.players[ctx.guild.id] = player
+        return player
+
+    @commands.command(name='connect', aliases=['join'])
+    async def _connect(self, ctx):
         isConnected = ctx.message.author.voice is not None
         if isConnected:
             channel = ctx.message.author.voice.channel
@@ -182,60 +195,21 @@ class Voice:
         else:
             await ctx.send("You're not in a voice channel")
 
-    @bot.command(name='disconnect', aliases=['leave'])
-    async def disconnect(ctx):
+    @commands.command(name='disconnect', aliases=['leave'])
+    async def _disconnect(ctx):
         server = ctx.message.guild.voice_client
         await ctx.send(f"Left {server}")  # Prints out object for now
         await server.disconnect()
 
-    @bot.command()
-    async def connected(ctx):
-        voice = get(bot.voice_clients, guild=ctx.guild)
-        if voice is None:
-            await ctx.send("Not connected")
-        elif voice.is_connected():
-            await ctx.send("Connected...")
+    @commands.command(name='play', aliases=['p'])
+    async def _play(self, ctx, url):
+        voice = ctx.voice_client
+        player = self.get_player(ctx)
+        source = await YTDLSource.create_source(ctx, url, loop=self.bot.loop, download=False)
+        await player.queue.put(source)
 
-    @bot.command(pass_context=True, aliases=['p'])
-    async def play(ctx, url: str):
-
-        ###### Setup ######
-        await ctx.send("Loading song...")
-
-        with ydl:
-            print("Downloading song...")
-            info_dict = ydl.extract_info(url, download=False)
-            video_id = info_dict.get("id", None)
-            video_title = info_dict.get('title', None)
-
-        ###### Play ######
-
-        fileName = music_folder + '\\' + video_title + '-' + video_id + ".mp3"
-        playlist.append(Song(video_title, video_id, url, fileName))
-        if not os.path.exists(fileName):
-            print("DEBUG: File doesn't exist. Downloading...")
-            ydl.download([url])
-
-        voice = get(bot.voice_clients, guild=ctx.guild)
-        if not voice:
-            try:
-                channel = ctx.message.author.voice.channel
-                await channel.connect()
-                voice = get(bot.voice_clients, guild=ctx.guild)
-            except AttributeError:
-                await ctx.send("No channel to join. Please join one.")
-                raise Exception("No channel to join. Please join one.")
-
-        voice.play(discord.FFmpegPCMAudio(playlist[0].file), after=lambda e: print(f"{video_title} finished playing."))
-        voice.source = discord.PCMVolumeTransformer(voice.source)
-        voice.source.volume = 0.2
-
-        await bot.change_presence(status=discord.Status.idle, activity=discord.Game(video_title))
-        await ctx.send(f"Playing: {video_title}")
-        print("Playing...")
-
-    @bot.command()
-    async def queue(ctx, url: str):
+    @commands.command(name='queue', aliases=['q'])
+    async def _queue(ctx, url: str):
         with ydl:
             info_dict = ydl.extract_info(url, download=False)
             video_id = info_dict.get("id", None)
@@ -247,8 +221,8 @@ class Voice:
         file_name = music_folder + '\\' + video_title + '-' + video_id + ".mp3"
         playlist.append(Song(video_title, video_id, url, file_name))
 
-    @bot.command(pass_context=True, aliases=['np'])
-    async def current(ctx):
+    @commands.command(pass_context=True, name='current', aliases=['np'])
+    async def _current(ctx):
         index = 1
         if len(playlist) == 0:
             await ctx.send("No songs in playlist")
@@ -256,26 +230,34 @@ class Voice:
             for index, song in enumerate(playlist):
                 await ctx.send(f"{index}. {song.title}")
 
-    @bot.command()
-    async def pause(ctx):
+    @commands.command(name='pause')
+    async def _pause(ctx):
         voice = get(bot.voice_clients, guild=ctx.guild)
         if voice is not None and voice.is_playing():
             voice.pause()
             await ctx.send("Paused")
 
-    @bot.command()
-    async def resume(ctx):
+    @commands.command(name='resume')
+    async def _resume(ctx):
         voice = get(bot.voice_clients, guild=ctx.guild)
         if voice is not None and voice.is_paused():
             voice.resume()
             await ctx.send(f"Resumed playing {voice.source}")
 
-    @bot.command(pass_context=True, aliases=['vol'])
-    async def volume(ctx, vol: int):
+    @commands.command(pass_context=True, aliases=['vol'])
+    async def _volume(ctx, vol: int):
         voice = get(bot.voice_clients, guild=ctx.guild)
         vol = 200 if vol > 200 else vol
         voice.source.volume = vol / 100
         await ctx.send(f"Volume set to {vol}%")
+
+    @commands.command(name='connected')
+    async def _connected(ctx):
+        voice = get(bot.voice_clients, guild=ctx.guild)
+        if voice is None:
+            await ctx.send("Not connected")
+        elif voice.is_connected():
+            await ctx.send("Connected...")
 
 ##############################     MEME COMMANDS    ##############################
 
@@ -349,4 +331,7 @@ async def sound(ctx, *args):
                 return
         voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(soundlist[sound].file), vol), after=None)
 
+def setup(bot):
+    bot.add_cog(Voice(bot))
+setup(bot)
 bot.run(TOKEN)
