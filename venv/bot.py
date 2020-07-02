@@ -99,7 +99,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         loop = loop or asyncio.get_event_loop()
         requester = data['requester']
 
-        data_to_run = partial(ytdl.extract_info, url=data['webpage_url'], download=False)
+        data_to_run = partial(ytdl.extract_info, url=data['webpage_url'], download=True)
         data = await loop.run_in_executor(None, data_to_run)
         return cls(discord.FFmpegPCMAudio(data['url']), data=data, requester=requester)
 
@@ -126,6 +126,7 @@ class MusicPlayer:
         await self.bot.wait_until_ready()
 
         while not self.bot.is_closed():
+            self.next.clear()
             try:
                 async with timeout(300):
                     source = await self.queue.get()
@@ -205,7 +206,7 @@ class Voice(commands.Cog):
     async def _play(self, ctx, url):
         voice = ctx.voice_client
         player = self.get_player(ctx)
-        source = await YTDLSource.create_source(ctx, url, loop=self.bot.loop, download=False)
+        source = await YTDLSource.create_source(ctx, url, loop=self.bot.loop, download=True)
         await player.queue.put(source)
 
     @commands.command(name='queue', aliases=['q'])
