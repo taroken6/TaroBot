@@ -88,7 +88,8 @@ class YTDLSource(discord.PCMVolumeTransformer):
         await ctx.send(f"Added {data['title']} to queue.")
 
         if download:
-            source = ydl.prepare_filename(data)
+            source = ydl.prepare_filename(data).replace('.webm', '.mp3')  # Temp fix for download=True in '_play' function
+            print(f"DEBUG: create_source, source = {source}")
         else:
             return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
 
@@ -99,7 +100,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         loop = loop or asyncio.get_event_loop()
         requester = data['requester']
 
-        data_to_run = partial(ytdl.extract_info, url=data['webpage_url'], download=True)
+        data_to_run = partial(ydl.extract_info, url=data['webpage_url'], download=True)
         data = await loop.run_in_executor(None, data_to_run)
         return cls(discord.FFmpegPCMAudio(data['url']), data=data, requester=requester)
 
@@ -128,32 +129,36 @@ class MusicPlayer:
         while not self.bot.is_closed():
             self.next.clear()
             try:
-                async with timeout(300):
+                async with timeout(30):
                     source = await self.queue.get()
+                    print(f"DEBUG: Attempting to get source = {source}")
             except asyncio.TimeoutError:
+                print("DEBUG: Player has timed out due to no songs in queue.")
                 return self.destroy(self.guild)  # Disconnects from guild
 
-        if not isinstance(source, YTDLSource):
+            if not isinstance(source, YTDLSource):
+                try:
+                    source = await YTDLSource.prepare_stream(source, loop=self.bot.loop)  # When download=False in '_play' function
+                except Exception as e:
+                    await self.channel.send(f"Error processing song. Exception: {e}")
+
+            source.volume = self.volume
+            self.current = source
+
+            self.guild.voice_client.play(source, after=lambda e: self.bot.loop.call_soon_threadsafe(self.next.set))
+            self.np = await self.channel.send(f"Now playing: {source.title}. Requested by {source.requester}")
+
+            print("DEBUG: Awaiting next in Queue")
+            await self.next.wait()
+            print("DEBUG: Done awaiting queue")
+
+            source.cleanup()
+            self.current = None
+
             try:
-                source = await YTDLSource.prepare_stream(source, loop=self.bot.loop)
-            except Exception as e:
-                await self.channel.send(f"Error processing song. Exception: {e}")
-
-        source.volume = self.volume
-        self.current = source
-
-        self.guild.voice_client.play(source, after=lambda e: print("Done playing song..."))
-        self.np = await self.channel.send(f"Now playing: {source.title}. Requested by {source.requester}")
-
-        await self.next.wait()
-
-        source.cleanup()
-        self.current = None
-
-        try:
-            await self.np.delete()
-        except discord.HTTPException:
-            pass
+                await self.np.delete()
+            except discord.HTTPException:
+                pass
 
     def destroy(self, guild):
         return self.bot.loop.create_task(self.cog.cleanup(guild))
@@ -206,8 +211,11 @@ class Voice(commands.Cog):
     async def _play(self, ctx, url):
         voice = ctx.voice_client
         player = self.get_player(ctx)
+        # If download=True, URL downloaded and queued as Discord.FFmpegPCMAudio object
+        # If download=False, URL queued as dict to be streamed through bot (Doesn't work. Known streaming issue with YTDL as of 07/06/20)
         source = await YTDLSource.create_source(ctx, url, loop=self.bot.loop, download=True)
         await player.queue.put(source)
+        print(f"DEBUG: Successfully queued!")
 
     @commands.command(name='queue', aliases=['q'])
     async def _queue(ctx, url: str):
