@@ -13,7 +13,6 @@ import concurrent.futures
 import asyncio
 from async_timeout import timeout
 
-from SongObj import Song
 from SoundObj import Sound
 
 ################ GLOBAL VARIABLES ################
@@ -21,7 +20,6 @@ from SoundObj import Sound
 TOKEN = '' # Bot token here
 BOT_PREFIX = 't!'
 IMAGE_FOLDER = 'images/'
-playlist = []
 music_folder = os.getcwd() + '\music'
 sound_folder = os.getcwd() + '\sounds\\'
 
@@ -242,9 +240,13 @@ class Voice(commands.Cog):
     @commands.command(name='pause')
     async def _pause(ctx):
         voice = get(bot.voice_clients, guild=ctx.guild)
-        if voice is not None and voice.is_playing():
-            voice.pause()
-            await ctx.send("Paused")
+        if voice is None or not voice.is_playing():
+            return await ctx.send("I'm not playing anything!")
+        elif voice.is_paused():
+            return await ctx.send("Already paused!")
+
+        voice.pause()
+        await ctx.send("Song paused.")
 
     @commands.command(name='resume')
     async def _resume(ctx):
