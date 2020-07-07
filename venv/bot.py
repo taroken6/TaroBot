@@ -129,7 +129,6 @@ class MusicPlayer:
             try:
                 async with timeout(30):
                     source = await self.queue.get()
-                    print(f"DEBUG: Attempting to get source = {source}")
             except asyncio.TimeoutError:
                 print("DEBUG: Player has timed out due to no songs in queue.")
                 return self.destroy(self.guild)  # Disconnects from guild
@@ -146,9 +145,7 @@ class MusicPlayer:
             self.guild.voice_client.play(source, after=lambda e: self.bot.loop.call_soon_threadsafe(self.next.set))
             self.np = await self.channel.send(f"Now playing: {source.title}. Requested by {source.requester}")
 
-            print("DEBUG: Awaiting next in Queue")
             await self.next.wait()
-            print("DEBUG: Done awaiting queue")
 
             source.cleanup()
             self.current = None
@@ -210,7 +207,14 @@ class Voice(commands.Cog):
 
     @commands.command(name='play', aliases=['p'])
     async def _play(self, ctx, url):
-        voice = ctx.voice_client
+        bot_voice = ctx.voice_client
+        if not bot_voice:
+            try:
+                user_channel = ctx.message.author.voice.channel
+                await user_channel.connect()
+            except:
+                return await ctx.send("Please join a channel first then retry.")
+
         player = self.get_player(ctx)
         # If download=True, URL downloaded and queued as Discord.FFmpegPCMAudio object
         # If download=False, URL queued as dict to be streamed through bot (Doesn't work. Known streaming issue with YTDL as of 07/06/20)
