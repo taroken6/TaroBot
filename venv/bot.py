@@ -190,14 +190,17 @@ class Voice(commands.Cog):
 
     @commands.command(name='connect', aliases=['join'])
     async def _connect(self, ctx):
-        isConnected = ctx.message.author.voice is not None
-        if isConnected:
-            channel = ctx.message.author.voice.channel
-            await channel.connect()
-            print(f'Joined {channel}')
-            await ctx.send(f"Joined \'{channel}\' channel.")
-        else:
-            await ctx.send("You're not in a voice channel")
+        bot_voice = ctx.voice_client
+        try:
+            user_channel = ctx.message.author.voice.channel
+        except:
+            return await ctx.send("You're currently not in a voice channel!")
+
+        if not bot_voice:
+            await user_channel.connect()
+        elif bot_voice.channel != user_channel:
+            await bot_voice.disconnect()
+            await user_channel.connect()
 
     @commands.command(name='disconnect', aliases=['leave'])
     async def _disconnect(ctx):
