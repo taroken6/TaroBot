@@ -10,6 +10,7 @@ from functools import partial
 import os
 import random
 import concurrent.futures
+import itertools
 import asyncio
 from async_timeout import timeout
 
@@ -133,9 +134,9 @@ class MusicPlayer:
                 print("DEBUG: Player has timed out due to no songs in queue.")
                 return self.destroy(self.guild)  # Disconnects from guild
 
-            if not isinstance(source, YTDLSource):
+            if not isinstance(source, YTDLSource): # When download=False in '_play' function
                 try:
-                    source = await YTDLSource.prepare_stream(source, loop=self.bot.loop)  # When download=False in '_play' function
+                    source = await YTDLSource.prepare_stream(source, loop=self.bot.loop)
                 except Exception as e:
                     await self.channel.send(f"Error processing song. Exception: {e}")
 
@@ -201,7 +202,7 @@ class Voice(commands.Cog):
 
     @commands.command(name='disconnect', aliases=['leave'])
     async def _disconnect(self, ctx: discord.ext.commands.Context):
-        bot_voice = ctx.message.guild.voice_client
+        bot_voice = ctx.voice_client
 
         try:
             user_channel = ctx.author.voice.channel
@@ -234,17 +235,25 @@ class Voice(commands.Cog):
         print(f"DEBUG: Successfully queued!")
 
     @commands.command(name='queue', aliases=['q'])
-    async def _queue(ctx, url: str):
-        with ydl:
-            info_dict = ydl.extract_info(url, download=False)
-            video_id = info_dict.get("id", None)
-            video_title = info_dict.get('title', None)
-            print(f"\n### Queued ### \nVideo Info:\nID: {video_id}\nTitle: {video_title}\n") # DEBUG
+    async def _queue(self, ctx):
+        '''
+        Shows a list of requests in queue
+        '''
+        bot_voice = ctx.voice_client
+        if not bot_voice:
+            return await ctx.send("I'm currently not in a voice channel")
 
-        ###### Queue ######
+        player = self.get_player(ctx)
+        if player.queue.empty():
+            return await ctx.send("There are no songs queued")
 
-        file_name = music_folder + '\\' + video_title + '-' + video_id + ".mp3"
-        playlist.append(Song(video_title, video_id, url, file_name))
+        queue = list(itertools.islice(player.queue._queue, 0, 10))  # Lists first 10 on queue
+        queue_string = '\n'.join(f"{idx + 1}. '{entry.title}' from {entry.requester}"
+                                 for idx, entry in enumerate(queue))
+        embed = discord.Embed(title=f"Listing next {len(queue)} from queue", description=queue_string)
+
+        await ctx.send(embed=embed)
+
 
     @commands.command(pass_context=True, name='current', aliases=['np'])
     async def _current(ctx):
