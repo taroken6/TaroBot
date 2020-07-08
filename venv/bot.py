@@ -189,7 +189,7 @@ class Voice(commands.Cog):
     async def _connect(self, ctx):
         bot_voice = ctx.voice_client
         try:
-            user_channel = ctx.message.author.voice.channel
+            user_channel = ctx.author.voice.channel
         except:
             return await ctx.send("You're currently not in a voice channel!")
 
@@ -200,10 +200,21 @@ class Voice(commands.Cog):
             await user_channel.connect()
 
     @commands.command(name='disconnect', aliases=['leave'])
-    async def _disconnect(ctx):
-        server = ctx.message.guild.voice_client
-        await ctx.send(f"Left {server}")  # Prints out object for now
-        await server.disconnect()
+    async def _disconnect(self, ctx: discord.ext.commands.Context):
+        bot_voice = ctx.message.guild.voice_client
+
+        try:
+            user_channel = ctx.author.voice.channel
+        except:
+            return await ctx.send("Please join a voice channel")
+
+        if user_channel != bot_voice.channel: return await ctx.send("We're not in the same voice channel")
+
+        try:
+            await ctx.message.guild.voice_client.disconnect()
+        except:
+            return await ctx.send("I'm not in a server.")
+
 
     @commands.command(name='play', aliases=['p'])
     async def _play(self, ctx, url):
