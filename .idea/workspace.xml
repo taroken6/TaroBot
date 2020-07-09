@@ -4,6 +4,7 @@
     <list default="true" id="acdb4581-508a-4820-8370-81c8045d4a05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/music/joji - yung michael-n_x-Nyp2qrs.mp3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/music/seels-Kg-HHXuOBlw.mp3" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="249" column="84" selection-start-line="249" selection-start-column="84" selection-end-line="249" selection-end-column="84" />
+            <state relative-caret-position="417">
+              <caret line="291" column="31" selection-start-line="291" selection-start-column="31" selection-end-line="291" selection-end-column="31" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -29,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/YoutubeDL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13337">
+            <state relative-caret-position="15895">
               <caret line="1041" column="30" selection-start-line="1041" selection-start-column="30" selection-end-line="1041" selection-end-column="30" />
             </state>
           </provider>
@@ -37,9 +38,7 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7752" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -82,6 +81,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -102,12 +102,6 @@
             </path>
             <path>
               <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TaroBot" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="music" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
@@ -125,7 +119,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -359,27 +352,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7752" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/YoutubeDL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13337">
-          <caret line="1041" column="30" selection-start-line="1041" selection-start-column="30" selection-end-line="1041" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="249" column="84" selection-start-line="249" selection-start-column="84" selection-end-line="249" selection-end-column="84" />
+        <state relative-caret-position="417">
+          <caret line="291" column="31" selection-start-line="291" selection-start-column="31" selection-end-line="291" selection-end-column="31" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/YoutubeDL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15895">
+          <caret line="1041" column="30" selection-start-line="1041" selection-start-column="30" selection-end-line="1041" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

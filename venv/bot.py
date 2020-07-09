@@ -237,7 +237,7 @@ class Voice(commands.Cog):
     @commands.command(name='queue', aliases=['q'])
     async def _queue(self, ctx):
         '''
-        Shows a list of requests in queue
+        Shows a list of 10 requests in queue
         '''
         bot_voice = ctx.voice_client
         if not bot_voice:
@@ -256,16 +256,15 @@ class Voice(commands.Cog):
 
 
     @commands.command(pass_context=True, name='current', aliases=['np'])
-    async def _current(ctx):
-        index = 1
-        if len(playlist) == 0:
-            await ctx.send("No songs in playlist")
-        else:
-            for index, song in enumerate(playlist):
-                await ctx.send(f"{index}. {song.title}")
+    async def _current(self, ctx):
+        player = self.get_player(ctx)
+        if player.queue.empty():
+            return await ctx.send("Currently not playing anything")
+
+        player.np
 
     @commands.command(name='pause')
-    async def _pause(ctx):
+    async def _pause(self, ctx):
         voice = get(bot.voice_clients, guild=ctx.guild)
         if voice is None or not voice.is_playing():
             return await ctx.send("I'm not playing anything!")
@@ -276,21 +275,21 @@ class Voice(commands.Cog):
         await ctx.send("Song paused.")
 
     @commands.command(name='resume')
-    async def _resume(ctx):
+    async def _resume(self, ctx):
         voice = get(bot.voice_clients, guild=ctx.guild)
         if voice is not None and voice.is_paused():
             voice.resume()
             await ctx.send(f"Resumed playing {voice.source}")
 
     @commands.command(pass_context=True, aliases=['vol'])
-    async def _volume(ctx, vol: int):
+    async def _volume(self, ctx, vol: int):
         voice = get(bot.voice_clients, guild=ctx.guild)
         vol = 200 if vol > 200 else vol
         voice.source.volume = vol / 100
         await ctx.send(f"Volume set to {vol}%")
 
     @commands.command(name='connected')
-    async def _connected(ctx):
+    async def _connected(self, ctx):
         voice = get(bot.voice_clients, guild=ctx.guild)
         if voice is None:
             await ctx.send("Not connected")
