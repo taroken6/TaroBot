@@ -241,7 +241,7 @@ class Voice(commands.Cog):
         '''
         bot_voice = ctx.voice_client
         if not bot_voice:
-            return await ctx.send("I'm currently not in a voice channel")
+            return await ctx.send("I'm currently not in a voice channel!")
 
         player = self.get_player(ctx)
         if player.queue.empty():
@@ -257,11 +257,16 @@ class Voice(commands.Cog):
 
     @commands.command(pass_context=True, name='current', aliases=['np'])
     async def _current(self, ctx):
+        bot_voice = ctx.voice_client
+        if not bot_voice:
+            return await ctx.send("I'm currently not in a voice channel!")
+
         player = self.get_player(ctx)
-        if player.queue.empty():
+        if not player.current:
             return await ctx.send("Currently not playing anything")
 
-        player.np
+        player.np = await ctx.send(f"Currently playing '{bot_voice.source.title}' requested by "
+                                          f"{bot_voice.source.requester}")
 
     @commands.command(name='pause')
     async def _pause(self, ctx):
