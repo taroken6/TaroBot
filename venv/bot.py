@@ -270,27 +270,27 @@ class Voice(commands.Cog):
 
     @commands.command(name='pause')
     async def _pause(self, ctx):
-        voice = get(bot.voice_clients, guild=ctx.guild)
-        if voice is None or not voice.is_playing():
+        bot_voice = ctx.voice_client
+        if bot_voice is None or not bot_voice.is_playing():
             return await ctx.send("I'm not playing anything!")
-        elif voice.is_paused():
+        elif bot_voice.is_paused():
             return await ctx.send("Already paused!")
 
-        voice.pause()
+        bot_voice.pause()
         await ctx.send("Song paused.")
 
     @commands.command(name='resume')
     async def _resume(self, ctx):
-        voice = get(bot.voice_clients, guild=ctx.guild)
-        if voice is not None and voice.is_paused():
-            voice.resume()
-            await ctx.send(f"Resumed playing {voice.source}")
+        bot_voice = ctx.voice_client
+        if bot_voice and bot_voice.is_paused():
+            bot_voice.resume()
+            await ctx.send(f"Resumed playing {bot_voice.source.title}")
 
     @commands.command(pass_context=True, aliases=['vol'])
     async def _volume(self, ctx, vol: int):
-        voice = get(bot.voice_clients, guild=ctx.guild)
+        bot_voice = ctx.voice_client
         vol = 200 if vol > 200 else vol
-        voice.source.volume = vol / 100
+        bot_voice.source.volume = vol / 100
         await ctx.send(f"Volume set to {vol}%")
 
     @commands.command(name='connected')
