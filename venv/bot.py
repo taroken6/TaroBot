@@ -271,7 +271,15 @@ class Voice(commands.Cog):
     @commands.command(name='pause')
     async def _pause(self, ctx):
         bot_voice = ctx.voice_client
-        if bot_voice is None or not bot_voice.is_playing():
+        if not bot_voice: return await(ctx.send("I'm not in a voice channel"))
+
+        try:
+            user_channel = ctx.message.author.voice.channel
+        except:
+            return await ctx.send("You're not in a voice channel!")
+        if bot_voice.channel != user_channel: return await ctx.send("We're not in the same voice channel!")
+
+        if not bot_voice.is_playing():
             return await ctx.send("I'm not playing anything!")
         elif bot_voice.is_paused():
             return await ctx.send("Already paused!")
@@ -282,9 +290,19 @@ class Voice(commands.Cog):
     @commands.command(name='resume')
     async def _resume(self, ctx):
         bot_voice = ctx.voice_client
-        if bot_voice and bot_voice.is_paused():
+        if not bot_voice: return await ctx.send("I'm not in a voice channel!")
+
+        try:
+            user_channel = ctx.message.author.voice.channel
+        except:
+            return await ctx.send("You're not in a voice channel!")
+        if bot_voice.channel != user_channel: return await ctx.send("We're not in the same voice channel!")
+
+        if bot_voice.is_paused():
             bot_voice.resume()
-            await ctx.send(f"Resumed playing {bot_voice.source.title}")
+            return await ctx.send(f"Resumed playing {bot_voice.source.title}")
+        else:
+            return await ctx.send("I'm not playing anything!")
 
     @commands.command(pname='volume', aliases=['vol'])
     async def _volume(self, ctx, vol: int):
@@ -296,8 +314,7 @@ class Voice(commands.Cog):
             user_channel = ctx.message.author.voice.channel
         except:
             return await ctx.send("You're not in a voice channel!")
-
-        if bot_voice.channel != user_channel: return await ctx.send("Please connect to the same voice channel as me")
+        if bot_voice.channel != user_channel: return await ctx.send("We're not in the same voice channel!")
 
         if not bot_voice.source:
             await ctx.send("I'm not playing anything!")
