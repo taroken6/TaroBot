@@ -286,12 +286,25 @@ class Voice(commands.Cog):
             bot_voice.resume()
             await ctx.send(f"Resumed playing {bot_voice.source.title}")
 
-    @commands.command(pass_context=True, aliases=['vol'])
+    @commands.command(pname='volume', aliases=['vol'])
     async def _volume(self, ctx, vol: int):
         bot_voice = ctx.voice_client
-        vol = 200 if vol > 200 else vol
-        bot_voice.source.volume = vol / 100
-        await ctx.send(f"Volume set to {vol}%")
+        if not bot_voice:
+            return await ctx.send("I'm not in a voice channel!")
+
+        try:
+            user_channel = ctx.message.author.voice.channel
+        except:
+            return await ctx.send("You're not in a voice channel!")
+
+        if bot_voice.channel != user_channel: return await ctx.send("Please connect to the same voice channel as me")
+
+        if not bot_voice.source:
+            await ctx.send("I'm not playing anything!")
+        else:
+            vol = 200 if vol > 200 else vol
+            bot_voice.source.volume = vol / 100
+            await ctx.send(f"Volume set to {vol}%")
 
     @commands.command(name='connected')
     async def _connected(self, ctx):
