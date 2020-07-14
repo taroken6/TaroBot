@@ -19,7 +19,7 @@ from SoundObj import Sound
 ################ GLOBAL VARIABLES ################
 
 TOKEN = '' # Bot token here
-BOT_PREFIX = 't!'
+PREFIX = 't!'
 IMAGE_FOLDER = 'images/'
 music_folder = os.getcwd() + '\music'
 sound_folder = os.getcwd() + '\sounds\\'
@@ -40,11 +40,13 @@ ydl = YoutubeDL(ydl_opts)
 
 ################  ################
 
-bot = commands.Bot(command_prefix=BOT_PREFIX)
+bot = commands.Bot(command_prefix=PREFIX)
 bot.remove_command('connect')
 bot.remove_command('help')
 
 ##############################     GENERAL COMMANDS     ##############################
+
+# TODO: Create a cog class for general commands
 
 @bot.event
 async def on_ready():
@@ -64,13 +66,57 @@ async def ping(ctx):
 async def getID(ctx):
     await ctx.send(ctx.author.id)
 
+@bot.command(name='connect', aliases=['join'])
+async def _connect(ctx):
+    bot_voice = ctx.voice_client
+    try:
+        user_channel = ctx.author.voice.channel
+    except:
+        return await ctx.send("You're currently not in a voice channel!")
+
+    if not bot_voice:
+        await user_channel.connect()
+    elif bot_voice.channel != user_channel:
+        await bot_voice.disconnect()
+        await user_channel.connect()
+
+@bot.command(name='disconnect', aliases=['leave'])
+async def _disconnect(ctx: discord.ext.commands.Context):
+    bot_voice = ctx.voice_client
+
+    try:
+        user_channel = ctx.author.voice.channel
+    except:
+        return await ctx.send("Please join a voice channel")
+
+    if user_channel != bot_voice.channel: return await ctx.send("We're not in the same voice channel")
+
+    try:
+        await ctx.message.guild.voice_client.disconnect()
+    except:
+        return await ctx.send("I'm not in a server.")
+
 @bot.command(name="help")
 async def _help(ctx):
     embed = discord.Embed(title="Commands", color=discord.Color.light_grey())
+
+    temp_general = bot.commands
+    general_text = ''
+    for command in temp_general:
+        general_text += f"{command}\n"
+    embed.add_field(name="General commands:",
+                    value= general_text,
+                    inline=True)
+
+    temp_music = MusicCog.get_commands(bot.get_cog('MusicCog'))
+    music_text = ''
+    for command in temp_music:
+        music_text += f"{command}\n"
+    embed.add_field(name="Music commands:",
+                    value=music_text,
+                    inline=True)
+
     await ctx.send(embed=embed)
-
-# TODO: Add-in a general help command that shows every available command  1st
-
 
 ##############################     MUSIC PLAYER / YTDL    ##############################
 
@@ -194,37 +240,6 @@ class MusicCog(commands.Cog):
             self.players[ctx.guild.id] = player
         return player
 
-    @commands.command(name='connect', aliases=['join'])
-    async def _connect(self, ctx):
-        bot_voice = ctx.voice_client
-        try:
-            user_channel = ctx.author.voice.channel
-        except:
-            return await ctx.send("You're currently not in a voice channel!")
-
-        if not bot_voice:
-            await user_channel.connect()
-        elif bot_voice.channel != user_channel:
-            await bot_voice.disconnect()
-            await user_channel.connect()
-
-    @commands.command(name='disconnect', aliases=['leave'])
-    async def _disconnect(self, ctx: discord.ext.commands.Context):
-        bot_voice = ctx.voice_client
-
-        try:
-            user_channel = ctx.author.voice.channel
-        except:
-            return await ctx.send("Please join a voice channel")
-
-        if user_channel != bot_voice.channel: return await ctx.send("We're not in the same voice channel")
-
-        try:
-            await ctx.message.guild.voice_client.disconnect()
-        except:
-            return await ctx.send("I'm not in a server.")
-
-
     @commands.command(name='play', aliases=['p'])
     async def _play(self, ctx, url):
         bot_voice = ctx.voice_client
@@ -312,7 +327,7 @@ class MusicCog(commands.Cog):
         else:
             return await ctx.send("I'm not playing anything!")
 
-    @commands.command(pname='volume', aliases=['vol'])
+    @commands.command(name='volume', aliases=['vol'])
     async def _volume(self, ctx, vol: int):
         bot_voice = ctx.voice_client
         if not bot_voice:
@@ -393,7 +408,7 @@ class SoundCog(commands.Cog):
                 color=discord.Colour.teal()
             )
             for key, value in self.soundlist.items():
-                embed.add_field(name=self.soundlist[key].name, value=self.soundlist[key].desc, inline=False)
+                embed.add_field(name=self.soundlist[key].name, value=self.soundlist[key].desc, inline=True)
             return await ctx.send(embed=embed)
 
         default_vol = 0.20
