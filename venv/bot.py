@@ -42,6 +42,7 @@ ydl = YoutubeDL(ydl_opts)
 
 bot = commands.Bot(command_prefix=BOT_PREFIX)
 bot.remove_command('connect')
+bot.remove_command('help')
 
 ##############################     GENERAL COMMANDS     ##############################
 
@@ -63,6 +64,13 @@ async def ping(ctx):
 async def getID(ctx):
     await ctx.send(ctx.author.id)
 
+@bot.command(name="help")
+async def _help(ctx):
+    embed = discord.Embed(title="Commands", color=discord.Color.light_grey())
+    await ctx.send(embed=embed)
+
+# TODO: Add-in a general help command that shows every available command  1st
+
 
 ##############################     MUSIC PLAYER / YTDL    ##############################
 
@@ -82,7 +90,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         data = await loop.run_in_executor(None, data_to_run)
 
         if 'entries' in data:
-            data = data['entries'][0]
+            data = data['entries'][0]  # First entry in a playlist if given
 
         await ctx.send(f"Added {data['title']} to queue.")
 
@@ -161,7 +169,7 @@ class MusicPlayer:
 
 ##############################     VOICE COMMANDS    ##############################
 
-class Voice(commands.Cog):
+class MusicCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.players = {}
@@ -337,61 +345,64 @@ class Voice(commands.Cog):
 async def jerry(ctx):
     await ctx.send('jERry', file=discord.File(IMAGE_FOLDER + 'jerry.jpg'))
 
-@bot.command(pass_context=True, aliases=['s'])
-async def sound(ctx, *args):
-    soundlist = {
-        "horn": Sound("horn", sound_folder + "airhorn.mp3", "MLG airhorn - Once"),
-        "wow": Sound("wow", sound_folder + "anime_wow.mp3", "Japanese wow~"),
-        "bullyme": Sound("bullyme", sound_folder + "bully_me.mp3", "Why you bully me"),
-        "clench": Sound("clech", sound_folder + "clench.mp3", "Clench the butt cheeks"),
-        "deez": Sound("deez", sound_folder + "deez_nuts.mp3", "Deez Nuts"),
-        "discnotif": Sound("discnotif", sound_folder + "disc_notif.mp3", "Discord notification sound"),
-        "nope": Sound("nope", sound_folder + "engi_nope.mp3", "engineer's nope.avi"),
-        "fastaf": Sound("fastaf", sound_folder + "fast_af.mp3", "I'm fast AF boi"),
-        "grapefruit": Sound("grapefruit", sound_folder + "grapefruit.mp3", "KWWHEKEWWHKWHKWHE"),
-        "hourlater": Sound("hourlater", sound_folder + "hour_later.mp3", "One hour later..."),
-        "mlghorn": Sound("mlghorn", sound_folder + "mlg_horn.mp3", "MLG airhorn"),
-        "notfunny": Sound("notfunny", sound_folder + "not_funny.mp3", "Not funny, didn't laugh"),
-        "ohmygah": Sound("ohmygah", sound_folder + "oh_my_gah.mp3", "Oh my gah"),
-        "oof": Sound("oof", sound_folder + "oof.mp3", "OOF"),
-        "pbb": Sound("pbb", sound_folder + "pbb.mp3", "\"Does that feel good?\""),
-        "pika": Sound("pika", sound_folder + "pika.mp3", "Pika pika~~~"),
-        "prettygood": Sound("prettygood", sound_folder + "pretty_good.mp3", "Hey, thta's pretty good."),
-        "risitas": Sound("risitas", sound_folder + "risitas.mp3", "JESUS, AHHHH AH AH AH"),
-        "skype": Sound("skype", sound_folder + "skype_call.mp3", "Skype call tone"),
-        "snort": Sound("snort", sound_folder + "snort.mp3", "The Spy's mating call"),
-        "succ": Sound("succ", sound_folder + "succ.mp3", "SUCC"),
-        "tidus": Sound("tidus", sound_folder + "tidus.mp3", "AH HAH HAH HAH"),
-        "triple": Sound("triple", sound_folder + "triple.mp3", "Oh baby a triple"),
-        "typing": Sound("typing", sound_folder + "typing.mp3", "*type noises intesify*"),
-        "weakhorn": Sound("weakhorn", sound_folder + "weak_horn.mp3", "Sad air horn"),
-        "whoa": Sound("whoa", sound_folder + "woah.mp3", "Whoa? whoa... WHOA WHOA WHOA WHOA"),
-        "wow": Sound("wow", sound_folder + "wow.mp3", "Wow."),
-        "wronghouse": Sound("wronghouse", sound_folder + "wrong_house.mp3", "You came to the wrong house foo!"),
-        "yeahboi": Sound("yeahboi", sound_folder + "yeah_boi.mp3", "Yeah boiiiiiiiiiiiiiiiiii"),
-        "yeet": Sound("yeet", sound_folder + "yeet.mp3", "Swaggersoul's yeet"),
-        "subaluwa": Sound("subaluwa", sound_folder + "subaluwa.mp3", "Iconic Ed, Edd, n Eddy sumo noise"),
-        "dude": Sound("dude", sound_folder + "dude.mp3", "How's it goin' dude?")
-    }
-    default_vol = 0.20
-    sound = args[0]
-    try:
-        vol = (float)(args[1]) / 100
-        print(f"DEBUG: set volume to {vol}")
-    except IndexError:
-        print(f"DEBUG: set volume to {default_vol}")
-        vol = default_vol
+class SoundCog(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.soundlist = {
+            "horn": Sound("horn", sound_folder + "airhorn.mp3", "MLG airhorn - Once"),
+            "wow": Sound("wow", sound_folder + "anime_wow.mp3", "Japanese wow~"),
+            "bullyme": Sound("bullyme", sound_folder + "bully_me.mp3", "Why you bully me"),
+            "clench": Sound("clech", sound_folder + "clench.mp3", "Clench the butt cheeks"),
+            "deez": Sound("deez", sound_folder + "deez_nuts.mp3", "Deez Nuts"),
+            "discnotif": Sound("discnotif", sound_folder + "disc_notif.mp3", "Discord notification sound"),
+            "nope": Sound("nope", sound_folder + "engi_nope.mp3", "engineer's nope.avi"),
+            "fastaf": Sound("fastaf", sound_folder + "fast_af.mp3", "I'm fast AF boi"),
+            "grapefruit": Sound("grapefruit", sound_folder + "grapefruit.mp3", "KWWHEKEWWHKWHKWHE"),
+            "hourlater": Sound("hourlater", sound_folder + "hour_later.mp3", "One hour later..."),
+            "mlghorn": Sound("mlghorn", sound_folder + "mlg_horn.mp3", "MLG airhorn"),
+            "notfunny": Sound("notfunny", sound_folder + "not_funny.mp3", "Not funny, didn't laugh"),
+            "ohmygah": Sound("ohmygah", sound_folder + "oh_my_gah.mp3", "Oh my gah"),
+            "oof": Sound("oof", sound_folder + "oof.mp3", "OOF"),
+            "pbb": Sound("pbb", sound_folder + "pbb.mp3", "\"Does that feel good?\""),
+            "pika": Sound("pika", sound_folder + "pika.mp3", "Pika pika~~~"),
+            "prettygood": Sound("prettygood", sound_folder + "pretty_good.mp3", "Hey, thta's pretty good."),
+            "risitas": Sound("risitas", sound_folder + "risitas.mp3", "JESUS, AHHHH AH AH AH"),
+            "skype": Sound("skype", sound_folder + "skype_call.mp3", "Skype call tone"),
+            "snort": Sound("snort", sound_folder + "snort.mp3", "The Spy's mating call"),
+            "succ": Sound("succ", sound_folder + "succ.mp3", "SUCC"),
+            "tidus": Sound("tidus", sound_folder + "tidus.mp3", "AH HAH HAH HAH"),
+            "triple": Sound("triple", sound_folder + "triple.mp3", "Oh baby a triple"),
+            "typing": Sound("typing", sound_folder + "typing.mp3", "*type noises intesify*"),
+            "weakhorn": Sound("weakhorn", sound_folder + "weak_horn.mp3", "Sad air horn"),
+            "whoa": Sound("whoa", sound_folder + "woah.mp3", "Whoa? whoa... WHOA WHOA WHOA WHOA"),
+            "wow": Sound("wow", sound_folder + "wow.mp3", "Wow."),
+            "wronghouse": Sound("wronghouse", sound_folder + "wrong_house.mp3", "You came to the wrong house foo!"),
+            "yeahboi": Sound("yeahboi", sound_folder + "yeah_boi.mp3", "Yeah boiiiiiiiiiiiiiiiiii"),
+            "yeet": Sound("yeet", sound_folder + "yeet.mp3", "Swaggersoul's yeet"),
+            "subaluwa": Sound("subaluwa", sound_folder + "subaluwa.mp3", "Iconic Ed, Edd, n Eddy sumo noise"),
+            "dude": Sound("dude", sound_folder + "dude.mp3", "How's it goin' dude?")
+        }
 
-    if sound == 'help' or sound == 'h':
-        embed = discord.Embed(
-            title="Sound commands:",
-            description="t!s [sound] [volume (0 - 200)]",
-            color=discord.Colour.teal()
-        )
-        for key, value in soundlist.items():
-            embed.add_field(name=soundlist[key].name, value=soundlist[key].desc, inline=False)
-        await ctx.send(embed=embed)
-    else:
+    @commands.command(pass_context=True, aliases=['s'])
+    async def sound(self, ctx, *args):
+        sound = args[0]
+        if sound == 'help' or sound == 'h':
+            embed = discord.Embed(
+                title="Sound commands:",
+                description="t!s [sound] [volume (0 - 200)]",
+                color=discord.Colour.teal()
+            )
+            for key, value in self.soundlist.items():
+                embed.add_field(name=self.soundlist[key].name, value=self.soundlist[key].desc, inline=False)
+            return await ctx.send(embed=embed)
+
+        default_vol = 0.20
+        try:
+            vol = (float)(args[1]) / 100
+            print(f"DEBUG: set volume to {vol}")
+        except IndexError:
+            print(f"DEBUG: set volume to {default_vol}")
+            vol = default_vol
         voice = get(bot.voice_clients, guild=ctx.guild)
         if voice is None:
             if ctx.message.author.voice is not None:
@@ -399,11 +410,15 @@ async def sound(ctx, *args):
                 await channel.connect()
                 voice = get(bot.voice_clients, guild=ctx.guild)
             else:
-                await ctx.send("Either me or you are not in a voice channel")
-                return
+                return await ctx.send("Either me or you are not in a voice channel")
         voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(soundlist[sound].file), vol), after=None)
 
+# TODO: Create pages for the help class 2nd
+
+# TODO: Allow it so that users can create their own sound command 3rd
+
 def setup(bot):
-    bot.add_cog(Voice(bot))
+    bot.add_cog(MusicCog(bot))
+    bot.add_cog(SoundCog(bot))
 setup(bot)
 bot.run(TOKEN)
