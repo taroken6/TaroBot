@@ -15,6 +15,8 @@ import asyncio
 from async_timeout import timeout
 
 from SoundObj import Sound
+import requests
+import time
 
 ################ GLOBAL VARIABLES ################
 
@@ -64,7 +66,7 @@ class GeneralCog(commands.Cog):
 
     @commands.command(name="id")
     async def getID(self, ctx):
-        await ctx.send(ctx.author.id)
+        await ctx.send(f"Your ID: {ctx.author.id}")
 
     @commands.command(name='connect', aliases=['join'])
     async def _connect(self, ctx):
@@ -100,7 +102,7 @@ class GeneralCog(commands.Cog):
     async def _help(self, ctx):
         embed = discord.Embed(title="Commands", color=discord.Color.light_grey())
 
-        temp_general = bot.commands
+        temp_general = GeneralCog.get_commands(bot.get_cog('GeneralCog'))
         general_text = ''
         for command in temp_general:
             general_text += f"{command}\n"
@@ -114,6 +116,14 @@ class GeneralCog(commands.Cog):
             music_text += f"{command}\n"
         embed.add_field(name="Music commands:",
                         value=music_text,
+                        inline=True)
+
+        temp_sound = SoundCog.get_commands(bot.get_cog('SoundCog'))
+        sound_text = ''
+        for command in temp_sound:
+            sound_text += f"{command}\n"
+        embed.add_field(name="Sound commands:",
+                        value=sound_text,
                         inline=True)
 
         await ctx.send(embed=embed)
@@ -357,7 +367,7 @@ class MusicCog(commands.Cog):
 ##############################     MEME COMMANDS    ##############################
 
 @bot.command()
-async def jerry(ctx):
+async def jerry(ctx):  # Test command. May remove later
     await ctx.send('jERry', file=discord.File(IMAGE_FOLDER + 'jerry.jpg'))
 
 class SoundCog(commands.Cog):
@@ -398,19 +408,51 @@ class SoundCog(commands.Cog):
             "dude": Sound("dude", sound_folder + "dude.mp3", "How's it goin' dude?")
         }
 
-    @commands.command(pass_context=True, aliases=['s'])
+    @commands.command(name='sound', aliases=['s'])
     async def sound(self, ctx, *args):
         sound = args[0]
-        if sound == 'help' or sound == 'h':
-            embed = discord.Embed(
-                title="Sound commands:",
-                description="t!s [sound] [volume (0 - 200)]",
-                color=discord.Colour.teal()
-            )
-            for key, value in self.soundlist.items():
-                embed.add_field(name=self.soundlist[key].name, value=self.soundlist[key].desc, inline=True)
-            return await ctx.send(embed=embed)
 
+        ###### Help request ######
+        if sound == 'help' or sound == 'h':
+            MAX_FIELDS = 25  # Max fields is 25 per embed
+            pages = (int)(len(self.soundlist) / MAX_FIELDS + 1)
+            embeds = []
+            for i in range(1, pages + 1):
+                embeds.append(discord.Embed(
+                    title=f"Sounds commands, Page {i} of {pages}",
+                    description="t!s [sound] [volume (0 - 200)]",
+                    color= discord.Colour.teal()
+                ))
+            for idx, (key, value) in enumerate(self.soundlist.items()):
+                page = (int)(idx / MAX_FIELDS)
+                embeds[page].add_field(name=self.soundlist[key].name,
+                                       value=self.soundlist[key].desc,
+                                       inline=True)
+            message = await ctx.send(embed=embeds[0])
+            left_arrow = '⬅'
+            right_arrow = '➡'
+            await message.add_reaction(left_arrow)
+            await message.add_reaction(right_arrow)
+
+            page = 0
+            reaction = ''
+            message_timeout = time.time() + 60
+            while time.time() < message_timeout:
+                if reaction and reaction.member.id != self.bot.user.id:
+                    if reaction.emoji.name == left_arrow:
+                        page = page - 1 if page > 0 else pages - 1
+                        await message.edit(embed=embeds[page])
+                    if reaction.emoji.name == right_arrow:
+                        page = page + 1 if page < pages - 1 else 0
+                        await message.edit(embed=embeds[page])
+                try:
+                    reaction = await bot.wait_for('raw_reaction_add', timeout=60.0)
+                except:
+                    await ctx.send("Wait for reaction timed out")
+
+            return
+
+        ###### Play sound ######
         default_vol = 0.20
         try:
             vol = (float)(args[1]) / 100
