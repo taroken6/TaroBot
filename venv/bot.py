@@ -7,7 +7,6 @@ import youtube_dl
 from youtube_dl import YoutubeDL
 
 from functools import partial
-import requests
 import time
 import os
 import random
@@ -17,6 +16,10 @@ import asyncio
 from async_timeout import timeout
 
 from SoundObj import Sound
+import requests
+from lxml import html
+from bs4 import BeautifulSoup
+import re
 
 ################ GLOBAL VARIABLES ################
 
@@ -445,6 +448,22 @@ class SoundCog(commands.Cog):
             except:
                 await ctx.send("Wait for reaction timed out")
 
+    async def _download(self, ctx, url):
+        page = requests.get(url)
+        soup = BeautifulSoup(page.text, "html.parser")
+        dl_url = ''
+        for link in soup.find_all('a', {'class': "instant-page-extra-button"}):
+            search = re.search('/media.*\.mp3', link.get('href'))
+            if search:
+                href = search.group(0)
+                dl_url = 'https://www.myinstants.com' + href
+                break
+        print(dl_url)
+        mp3_file = requests.get(dl_url, allow_redirects=True)
+        print(mp3_file.raw)
+        with open('sound.mp3', 'wb') as f:
+            f.write(mp3_file.content)
+
     @commands.command(name='sound', aliases=['s'])
     async def sound(self, ctx, *args):
         try:
@@ -452,29 +471,35 @@ class SoundCog(commands.Cog):
         except:
             sound = 'h'
 
-        ###### Help request ######
         help_param = ['help', 'h']
-        if not sound or sound in help_param:
+        dl_param = ['download', 'dl']
+
+        if not sound or sound in help_param:  ###### Help request ######
             await self._help(ctx)
             return
-
-        ###### Play sound ######
-        default_vol = 0.20
-        try:
-            vol = (float)(args[1]) / 100
-            print(f"DEBUG: set volume to {vol}")
-        except IndexError:
-            print(f"DEBUG: set volume to default - {default_vol}")
-            vol = default_vol
-        voice = ctx.voice_client
-        if not voice:
-            if ctx.message.author.voice:
-                channel = ctx.message.author.voice.channel
-                await channel.connect()
-                voice = get(bot.voice_clients, guild=ctx.guild)
-            else:
-                return await ctx.send("Either me or you are not in a voice channel")
-        voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.soundlist[sound].file), vol), after=None)
+        elif sound in dl_param:
+            try:
+                url = args[1]
+            except:
+                return await ctx.send("Please specify a URL")
+            await self._download(ctx, url)
+        else:  ###### Play sound ######
+            default_vol = 0.20
+            try:
+                vol = (float)(args[1]) / 100
+                print(f"DEBUG: set volume to {vol}")
+            except IndexError:
+                print(f"DEBUG: set volume to default - {default_vol}")
+                vol = default_vol
+            voice = ctx.voice_client
+            if not voice:
+                if ctx.message.author.voice:
+                    channel = ctx.message.author.voice.channel
+                    await channel.connect()
+                    voice = get(bot.voice_clients, guild=ctx.guild)
+                else:
+                    return await ctx.send("Either me or you are not in a voice channel")
+            voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.soundlist[sound].file), vol), after=None)
 
 # TODO: Allow it so that users can create their own sound command 3rd
 
