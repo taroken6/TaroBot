@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acdb4581-508a-4820-8370-81c8045d4a05" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/venv/cogs/GeneralCog.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/cogs/MusicCog.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/cogs/SoundCog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bot.py" afterDir="false" />
     </list>
@@ -13,16 +16,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="463" column="35" selection-start-line="463" selection-start-column="35" selection-end-line="463" selection-end-column="35" />
+            <state relative-caret-position="459">
+              <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <element signature="e#13274#16185#0" />
-                <element signature="e#18357#18397#0" />
-                <element signature="e#18654#19439#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="101" column="61" lean-forward="true" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+                <element signature="e#107#3018#0" />
+                <element signature="e#3060#4664#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="3" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/cogs/GeneralCog.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-260">
+              <caret line="51" column="27" lean-forward="true" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,7 +99,11 @@
         <option value="$PROJECT_DIR$/venv/SongPlayer.py" />
         <option value="$PROJECT_DIR$/venv/example_bot.py" />
         <option value="$PROJECT_DIR$/venv/SoundObj.py" />
+        <option value="$PROJECT_DIR$/venv/GeneralCog.py" />
+        <option value="$PROJECT_DIR$/venv/cogs/Music.py" />
+        <option value="$PROJECT_DIR$/venv/cogs/MusicCog.py" />
         <option value="$PROJECT_DIR$/venv/bot.py" />
+        <option value="$PROJECT_DIR$/venv/cogs/SoundCog.py" />
       </list>
     </option>
   </component>
@@ -93,6 +135,12 @@
               <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
               <item name="TaroBot" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="cogs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TaroBot" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -116,6 +164,13 @@
               <item name="&lt; Python 3.7 (TaroBot) &gt;" type="70bed36:NamedLibraryElementNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (TaroBot) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="cogs" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -126,6 +181,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\audie\PycharmProjects\TaroBot\venv\cogs" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -251,14 +311,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.30877572" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.30877572" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -362,23 +423,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/bot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="463" column="35" selection-start-line="463" selection-start-column="35" selection-end-line="463" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#13274#16185#0" />
-            <element signature="e#18357#18397#0" />
-            <element signature="e#18654#19439#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/SoundObj.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/cogs/GeneralCog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-260">
+          <caret line="51" column="27" lean-forward="true" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/bot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="101" column="61" lean-forward="true" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#107#3018#0" />
+            <element signature="e#3060#4664#0" />
+          </folding>
         </state>
       </provider>
     </entry>
