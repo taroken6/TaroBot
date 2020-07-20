@@ -1,0 +1,1 @@
+{"fuckoff": {"name": "fuckoff", "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\fuckoff.mp3", "desc": "Fuck", "url": "https://www.myinstants.com/media/sounds/fuckoff.mp3"}}
