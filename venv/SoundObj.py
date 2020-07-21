@@ -4,3 +4,6 @@ class Sound:
         self.file = file
         self.desc = desc
         self.url = url
+
+    def __str__(self):
+        return f'{{"name": {self.name}, "file": {self.file}, "desc": {self.desc}, "url": {self.url}}}'

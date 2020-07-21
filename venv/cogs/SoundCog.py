@@ -22,9 +22,15 @@ class SoundCog(commands.Cog):
         self.json_file = "soundlist.txt"
         self.soundlist = {}
 
+        self.deserialize()
         for file in os.listdir(sound_folder):
             file_name = file.split('.mp3')[0]
-            self.soundlist[file_name] = Sound(file_name, f"{sound_folder}{file}", 'Description missing', 'URL missing')
+            if not self.soundlist[file_name]:
+                print("Found unknown file in sound dir. Creating new sound with default params")
+                self.soundlist[file_name] = Sound(
+                    file_name,
+                    f"{sound_folder}{file}",
+                    'Description missing', 'URL missing')
 
     async def _help(self, ctx):
         MAX_FIELDS = 25  # Max fields is 25 per embed
@@ -64,6 +70,7 @@ class SoundCog(commands.Cog):
                 return print("Timed out")
 
     async def _download(self, ctx, url, name, desc):
+        # TODO: May need better error handling
         page = requests.get(url)
         soup = BeautifulSoup(page.text, "html.parser")
         dl_url = ''
@@ -82,6 +89,7 @@ class SoundCog(commands.Cog):
         with open(mp3_file_name, 'wb') as f:
             f.write(mp3_file.content)
         self.serialize(sound)
+        self.deserialize()
 
     def serialize(self, sound):
         name, file, desc, url = sound.name, sound.file, sound.desc, sound.url
@@ -91,20 +99,33 @@ class SoundCog(commands.Cog):
                   'desc': desc,
                   'url': url
                   }}
+        for s in self.soundlist.keys():
+            sound = self.soundlist[s]
+            data[sound.name] = {
+                'name': sound.name,
+                'file': sound.file,
+                'desc': sound.desc,
+                'url': sound.url
+            }
         with open(self.json_file, 'w') as sl:
-            json.dump(data, sl)
+            json.dump(data, sl, indent=2)
             sl.close()
-            f = open(self.json_file)
-            payload = json.load(f)
-            print(payload)
-        return
 
     def deserialize(self):
-        return
+        '''
+        Unloads serialized dictionary of Sound objects to soundlist
+        '''
+        # TODO: What if the mp3 file doesn't exist?
+        with open(self.json_file) as f:
+            payload = json.load(f)
+            for key, value in payload.items():
 
+                if not key in self.soundlist:
+                    print(f"DEBUG: {key} not found. Creating new Sound object")
+                    self.soundlist[key] = Sound(value['name'], value['file'], value['desc'], value['url'])
 
     @commands.command(name='sound', aliases=['s'])
-    async def sound(self, ctx, *args):
+    async def _sound(self, ctx, *args):
         try:
             sound = args[0]
         except:
@@ -119,7 +140,7 @@ class SoundCog(commands.Cog):
             try:
                 url, name, desc = args[1], args[2], args[3]
             except:
-                return await ctx.send("Bad input: 't!s dl [url] [name] [desc]")
+                return await ctx.send("Bad input: 't!s dl [url] [name] [desc]'")
             await self._download(ctx, url, name, desc)
         else:  ###### Play sound ######
             default_vol = 0.20

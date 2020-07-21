@@ -1,1 +1,206 @@
-{"fuckoff": {"name": "fuckoff", "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\fuckoff.mp3", "desc": "Fuck", "url": "https://www.myinstants.com/media/sounds/fuckoff.mp3"}}
+{
+  "shutup": {
+    "name": "shutup",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\shutup.mp3",
+    "desc": "shut",
+    "url": "https://www.myinstants.com/media/sounds/shutup.swf.mp3"
+  },
+  "fuckoff": {
+    "name": "fuckoff",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\fuckoff.mp3",
+    "desc": "EFF OFF",
+    "url": "URL missing"
+  },
+  "airhorn": {
+    "name": "airhorn",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\airhorn.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "anime_wow": {
+    "name": "anime_wow",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\anime_wow.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "bully_me": {
+    "name": "bully_me",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\bully_me.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "clench": {
+    "name": "clench",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\clench.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "deez_nuts": {
+    "name": "deez_nuts",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\deez_nuts.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "disc_notif": {
+    "name": "disc_notif",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\disc_notif.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "dude": {
+    "name": "dude",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\dude.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "engi_nope": {
+    "name": "engi_nope",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\engi_nope.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "fast_af": {
+    "name": "fast_af",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\fast_af.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "grapefruit": {
+    "name": "grapefruit",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\grapefruit.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "hour_later": {
+    "name": "hour_later",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\hour_later.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "mlg_horn": {
+    "name": "mlg_horn",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\mlg_horn.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "not_funny": {
+    "name": "not_funny",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\not_funny.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "oh_my_gah": {
+    "name": "oh_my_gah",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\oh_my_gah.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "oof": {
+    "name": "oof",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\oof.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "pbb": {
+    "name": "pbb",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\pbb.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "pika": {
+    "name": "pika",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\pika.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "pretty_good": {
+    "name": "pretty_good",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\pretty_good.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "risitas": {
+    "name": "risitas",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\risitas.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "skype_call": {
+    "name": "skype_call",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\skype_call.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "snort": {
+    "name": "snort",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\snort.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "subaluwa": {
+    "name": "subaluwa",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\subaluwa.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "succ": {
+    "name": "succ",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\succ.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "tidus": {
+    "name": "tidus",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\tidus.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "triple": {
+    "name": "triple",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\triple.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "typing": {
+    "name": "typing",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\typing.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "weak_horn": {
+    "name": "weak_horn",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\weak_horn.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "woah": {
+    "name": "woah",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\woah.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "wow": {
+    "name": "wow",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\wow.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "wrong_house": {
+    "name": "wrong_house",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\wrong_house.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "yeah_boi": {
+    "name": "yeah_boi",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\yeah_boi.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "yeet": {
+    "name": "yeet",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\yeet.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  }
+}
