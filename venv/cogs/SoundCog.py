@@ -15,6 +15,9 @@ import pickle
 import json
 
 sound_folder = os.getcwd() + '\sounds\\'
+help_param = ['help', 'h']
+dl_param = ['download', 'dl']
+reserved_names = help_param + dl_param
 
 class SoundCog(commands.Cog):
     def __init__(self, bot):
@@ -30,6 +33,33 @@ class SoundCog(commands.Cog):
                     file_name,
                     f"{sound_folder}{file}",
                     'Description missing', 'URL missing')
+
+    def serialize(self):
+        data = {}
+        for s in self.soundlist.keys():
+            sound = self.soundlist[s]
+            data[sound.name] = {
+                'name': sound.name,
+                'file': sound.file,
+                'desc': sound.desc,
+                'url': sound.url
+            }
+
+        with open(self.json_file, 'w') as sl:
+            json.dump(data, sl, indent=2)
+            sl.close()
+
+    def deserialize(self):
+        '''
+        Unloads serialized dictionary of Sound objects to soundlist
+        '''
+        # TODO: What if the mp3 file doesn't exist?
+        with open(self.json_file) as f:
+            payload = json.load(f)
+            for key, value in payload.items():
+
+                if not key in self.soundlist:
+                    self.soundlist[key] = Sound(value['name'], value['file'], value['desc'], value['url'])
 
     async def _help(self, ctx):
         MAX_FIELDS = 25  # Max fields is 25 per embed
@@ -72,7 +102,9 @@ class SoundCog(commands.Cog):
                 return print("Timed out")
 
     async def _download(self, ctx, url, name, desc):
-        # TODO: May need better error handling
+
+        if name in reserved_names:
+            return await ctx.send(f"'{name}' is reserved for a command! Please retry with a different name.")
         if 'myinstants.com/instant/' not in url:
             return await ctx.send("URL must contain 'myinstants.com/instant/'")
         if name in self.soundlist.keys():
@@ -82,6 +114,7 @@ class SoundCog(commands.Cog):
             await msg.add_reaction(check)
             await msg.add_reaction(x)
 
+            # Prompt to overwrite
             reaction = ''
             message_timeout = time.time() + 60
             while time.time() < message_timeout:
@@ -104,50 +137,28 @@ class SoundCog(commands.Cog):
                 href = search.group(0)
                 dl_url = 'https://www.myinstants.com' + href
                 break
-
         mp3_file = requests.get(dl_url, allow_redirects=True)
         mp3_file_name = f"{sound_folder}{name}.mp3"
-        sound = Sound(name, mp3_file_name, desc, dl_url)
-
         with open(mp3_file_name, 'wb') as f:
             f.write(mp3_file.content)
-        self.serialize(sound)
+
+        sound = Sound(name, mp3_file_name, desc, dl_url)
+        self.soundlist[name] = sound
+        self.serialize()
         self.deserialize()
         await ctx.send("Download complete!")
 
-    def serialize(self, sound):
-        name, file, desc, url = sound.name, sound.file, sound.desc, sound.url
-        data = {name:
-                 {'name': name,
-                  'file': file,
-                  'desc': desc,
-                  'url': url
-                  }}
-
-        for s in self.soundlist.keys():
-            sound = self.soundlist[s]
-            data[sound.name] = {
-                'name': sound.name,
-                'file': sound.file,
-                'desc': sound.desc,
-                'url': sound.url
-            }
-
-        with open(self.json_file, 'w') as sl:
-            json.dump(data, sl, indent=2)
-            sl.close()
-
-    def deserialize(self):
-        '''
-        Unloads serialized dictionary of Sound objects to soundlist
-        '''
-        # TODO: What if the mp3 file doesn't exist?
-        with open(self.json_file) as f:
-            payload = json.load(f)
-            for key, value in payload.items():
-
-                if not key in self.soundlist:
-                    self.soundlist[key] = Sound(value['name'], value['file'], value['desc'], value['url'])
+    async def _play(self, ctx, sound, vol=20):
+        vol = (float)(vol) / 100
+        voice = ctx.voice_client
+        if not voice:
+            if ctx.message.author.voice:
+                channel = ctx.message.author.voice.channel
+                await channel.connect()
+                voice = get(self.bot.voice_clients, guild=ctx.guild)
+            else:
+                return await ctx.send("Either me or you are not in a voice channel")
+        voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.soundlist[sound].file), vol), after=None)
 
     @commands.command(name='sound', aliases=['s'])
     async def _sound(self, ctx, *args):
@@ -155,9 +166,6 @@ class SoundCog(commands.Cog):
             sound = args[0]
         except:
             sound = 'h'
-
-        help_param = ['help', 'h']
-        dl_param = ['download', 'dl']
 
         if not sound or sound in help_param:  ###### Help request ######
             return await self._help(ctx)
@@ -168,20 +176,9 @@ class SoundCog(commands.Cog):
                 return await ctx.send("Bad input: 't!s dl [url] [name] [desc]'")
             await self._download(ctx, url, name, desc)
         elif sound in self.soundlist.keys():  ###### Play sound ######
-            default_vol = 0.20
-            try:
-                vol = (float)(args[1]) / 100
-            except IndexError:
-                vol = default_vol
-            voice = ctx.voice_client
-            if not voice:
-                if ctx.message.author.voice:
-                    channel = ctx.message.author.voice.channel
-                    await channel.connect()
-                    voice = get(self.bot.voice_clients, guild=ctx.guild)
-                else:
-                    return await ctx.send("Either me or you are not in a voice channel")
-            voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.soundlist[sound].file), vol), after=None)
+            try: vol = args[1]
+            except: vol = 20
+            return await self._play(ctx, sound, vol)
         else:
             print("Error in SoundCog. Invalid Input.")
 
