@@ -202,11 +202,5 @@
     "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\yeet.mp3",
     "desc": "Description missing",
     "url": "URL missing"
-  },
-  "test1": {
-    "name": "test1",
-    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\test1.mp3",
-    "desc": "Test: 'shut up1'",
-    "url": "https://www.myinstants.com/media/sounds/censor-beep-1.mp3"
   }
 }
