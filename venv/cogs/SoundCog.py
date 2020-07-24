@@ -25,38 +25,24 @@ class SoundCog(commands.Cog):
         self.bot = bot
         self.json_file = "soundlist.txt"
         self.soundlist = {}
-
         self.deserialize()  # Get existing sounds in JSON file
         for file in os.listdir(sound_folder):  # Get other mp3 files in folder that aren't in JSON file
             file_name = file.split('.mp3')[0]
             if file_name not in self.soundlist.keys():
-                self.soundlist[file_name] = Sound(
-                    file_name,
-                    f"{sound_folder}{file}",
-                    'Description missing', 'URL missing')
+                self.soundlist[file_name] = Sound(file_name, f"{sound_folder}{file}", 'Description missing',
+                                                  'URL missing')
 
     def serialize(self):
-        '''
-        Writes all Sound objects in dict to JSON
-        '''
         data = {}
         for s in self.soundlist.keys():
             sound = self.soundlist[s]
-            data[sound.name] = {
-                'name': sound.name,
-                'file': sound.file,
-                'desc': sound.desc,
-                'url': sound.url
-            }
+            data[sound.name] = {'name': sound.name, 'file': sound.file, 'desc': sound.desc, 'url': sound.url}
 
         with open(self.json_file, 'w') as sl:
             json.dump(data, sl, indent=2)
             sl.close()
 
     def deserialize(self):
-        '''
-        Unloads JSON to sound dict
-        '''
         with open(self.json_file) as f:
             payload = json.load(f)
             for key, value in payload.items():
@@ -64,9 +50,11 @@ class SoundCog(commands.Cog):
                     self.soundlist[key] = Sound(value['name'], value['file'], value['desc'], value['url'])
 
     async def _help(self, ctx):
+        embeds = []
         MAX_FIELDS = 25  # Max fields is 25 per embed
         pages = (int)(len(self.soundlist) / MAX_FIELDS + 1)
-        embeds = []
+
+        # Embed's header
         for i in range(1, pages + 1):
             embeds.append(discord.Embed(
                 title=f"Sounds commands, Page {i} of {pages}",
@@ -75,36 +63,35 @@ class SoundCog(commands.Cog):
                             "example: t!s dl https://www.myinstants.com/instant/crickets/ cricket \"cricket noises\"",
                 color=discord.Colour.teal()
             ))
+
+        # Soundlist
         for idx, (key, value) in enumerate(self.soundlist.items()):
             page = (int)(idx / MAX_FIELDS)
             embeds[page].add_field(name=self.soundlist[key].name,
                                    value=self.soundlist[key].desc,
                                    inline=True)
-        message = await ctx.send(embed=embeds[0])
 
-        left_arrow = '⬅'
-        right_arrow = '➡'
+        left_arrow, right_arrow = '⬅', '➡'
+        message = await ctx.send(embed=embeds[0])
         await message.add_reaction(left_arrow)
         await message.add_reaction(right_arrow)
         page = 0
         reaction = ''
-
         message_timeout = time.time() + 60
         while time.time() < message_timeout:
             if reaction and reaction.member.id != self.bot.user.id:
                 if reaction.emoji.name == left_arrow:
-                    page = page - 1 if page > 0 else pages - 1
-                    await message.edit(embed=embeds[page])
+                    page -= 1 if page > 0 else 1 - pages
                 if reaction.emoji.name == right_arrow:
-                    page = page + 1 if page < pages - 1 else 0
-                    await message.edit(embed=embeds[page])
+                    page += 1 if page < pages - 1 else 1 - pages
+                await message.edit(embed=embeds[page])
             try:
                 reaction = await self.bot.wait_for('raw_reaction_add', timeout=60.0)
             except:
                 return print("Timed out")
 
     async def _download(self, ctx, url, name, desc):
-
+        # Error handler
         if name in reserved_names:
             return await ctx.send(f"'{name}' is reserved for a command! Please retry with a different name.")
         if 'myinstants.com/instant/' not in url:
@@ -130,6 +117,7 @@ class SoundCog(commands.Cog):
                 except:
                     return await ctx.send("Timed out. Sound not downloaded.")
 
+        # Scrape HTML for .mp3 file and write
         page = requests.get(url)
         soup = BeautifulSoup(page.text, "html.parser")
         dl_url = ''
@@ -159,13 +147,10 @@ class SoundCog(commands.Cog):
                 await channel.connect()
                 voice = get(self.bot.voice_clients, guild=ctx.guild)
             else:
-                return await ctx.send("Either me or you are not in a voice channel")
+                return await ctx.send("Please join a voice channel")
         voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.soundlist[sound].file), vol), after=None)
 
     async def _delete(self, ctx, name):
-        '''
-        Remove sound from dict and then resets it
-        '''
         self.soundlist.pop(name, None)
         self.serialize()
         self.deserialize()
@@ -178,20 +163,18 @@ class SoundCog(commands.Cog):
         except:
             sound = 'h'
 
-        if not sound or sound in help_param:  ###### Help request ######
+        if not sound or sound in help_param: # Help
             return await self._help(ctx)
-        if sound in del_param:
+        if sound in del_param: # Delete
             try: name = args[1]
             except: return await ctx.send("Please specify a sound to delete")
             return await self._delete(ctx, name)
-        if sound in dl_param:
-            try:
-                url, name, desc = args[1], args[2], args[3]
-            except:
-                return await ctx.send("Bad input: 't!s dl [url] [name] [desc]'")
+        if sound in dl_param: # Download
+            try: url, name, desc = args[1], args[2], args[3]
+            except: return await ctx.send("Bad input. Ex.) 't!s dl [url] [name] [desc]'")
             await self._download(ctx, url, name, desc)
-        if sound in self.soundlist.keys():  ###### Play sound ######
-            try: vol = args[1]
+        if sound in self.soundlist.keys(): # Play
+            try: vol: int = args[1]
             except: vol = 20
             return await self._play(ctx, sound, vol)
         else:
