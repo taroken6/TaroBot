@@ -202,5 +202,41 @@
     "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\yeet.mp3",
     "desc": "Description missing",
     "url": "URL missing"
+  },
+  "test1": {
+    "name": "test1",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\test1.mp3",
+    "desc": "Description missing",
+    "url": "URL missing"
+  },
+  "fart": {
+    "name": "fart",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\fart.mp3",
+    "desc": "fart",
+    "url": "https://www.myinstants.com/media/sounds/dry-fart.mp3"
+  },
+  "smash": {
+    "name": "smash",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\smash.mp3",
+    "desc": "Lemme smash",
+    "url": "https://www.myinstants.com/media/sounds/lemme-smash.mp3"
+  },
+  "wall": {
+    "name": "wall",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\wall.mp3",
+    "desc": "wall",
+    "url": "https://www.myinstants.com/media/sounds/i_will_build_a_great_great_wall_on_our_southern_bo.mp3"
+  },
+  "nigeru": {
+    "name": "nigeru",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\nigeru.mp3",
+    "desc": "Nigerun dayooooo. Smokeeyyyyy",
+    "url": "https://www.myinstants.com/media/sounds/nigerundayo_cut1.mp3"
+  },
+  "xp": {
+    "name": "xp",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\xp.mp3",
+    "desc": "DESC",
+    "url": "https://www.myinstants.com/media/sounds/erro.mp3"
   }
 }

@@ -90,7 +90,7 @@ class SoundCog(commands.Cog):
             except:
                 return print("Timed out")
 
-    async def _download(self, ctx, url, name, desc):
+    async def _download(self, ctx, url, name, desc):  # TODO: Make it so JSON saves onto guild IDs
         # Error handler
         if name in reserved_names:
             return await ctx.send(f"'{name}' is reserved for a command! Please retry with a different name.")
@@ -151,7 +151,11 @@ class SoundCog(commands.Cog):
         voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.soundlist[sound].file), vol), after=None)
 
     async def _delete(self, ctx, name):
-        self.soundlist.pop(name, None)
+        try:
+            file = self.soundlist.pop(name, None).name + ".mp3"
+        except:
+            return await ctx.send("That sound doesn't exist!")
+        os.remove(sound_folder + file)
         self.serialize()
         self.deserialize()
         await ctx.send(f"'{name}' deleted successfully!")
@@ -170,7 +174,8 @@ class SoundCog(commands.Cog):
             except: return await ctx.send("Please specify a sound to delete")
             return await self._delete(ctx, name)
         if sound in dl_param: # Download
-            try: url, name, desc = args[1], args[2], args[3]
+            desc = args[3] if len(args) > 3 else 'DESC_HERE'
+            try: url, name = args[1], args[2]
             except: return await ctx.send("Bad input. Ex.) 't!s dl [url] [name] [desc]'")
             await self._download(ctx, url, name, desc)
         if sound in self.soundlist.keys(): # Play
