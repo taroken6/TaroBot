@@ -60,7 +60,8 @@ class SoundCog(commands.Cog):
                 title=f"Sounds commands, Page {i} of {pages}",
                 description="t!s [sound name] [volume (0 - 200)]\n"
                             "t!s dl [myinstants.com URL] [name] [description]\n"
-                            "example: t!s dl https://www.myinstants.com/instant/crickets/ cricket \"cricket noises\"",
+                            "example: t!s dl https://www.myinstants.com/instant/crickets/ cricket \"cricket noises\"\n"
+                            "t!s del [sound name]",
                 color=discord.Colour.teal()
             ))
 
@@ -169,18 +170,28 @@ class SoundCog(commands.Cog):
 
         if not sound or sound in help_param: # Help
             return await self._help(ctx)
-        if sound in del_param: # Delete
+        elif sound in del_param: # Delete
             try: name = args[1]
             except: return await ctx.send("Please specify a sound to delete")
             return await self._delete(ctx, name)
-        if sound in dl_param: # Download
+        elif sound in dl_param: # Download
+            if len(args) > 4:
+                return await ctx.send("Invalid Input: Too many arguments passed!\n"
+                                      "Make sure to put names & descriptions within quotes if they have spaces.\n"
+                                      "Ex.) t!s dl https://www.myinstants.com/instant/mission-failed/ "
+                                      "\"mission failed\" \"Mission failed. We'll get 'em next time.\"")
             desc = args[3] if len(args) > 3 else 'DESC_HERE'
             try: url, name = args[1], args[2]
             except: return await ctx.send("Bad input. Ex.) 't!s dl [url] [name] [desc]'")
-            await self._download(ctx, url, name, desc)
-        if sound in self.soundlist.keys(): # Play
-            try: vol: int = args[1]
+            return await self._download(ctx, url, name, desc)
+        elif sound in self.soundlist.keys(): # Play
+            try: vol = args[1]
             except: vol = 20
+            if type(vol) is not int:
+                return await ctx.send("Bad Input.\n"
+                                      "Ex.) 't!s [Sound] [Vol]\n"
+                                      "Make sure to add \"quotes\" if the name has spaces in them."
+                                      "Ex.) t!s \"Mission Failed\" 50")
             return await self._play(ctx, sound, vol)
         else:
             return await ctx.send("Sound does not exist")

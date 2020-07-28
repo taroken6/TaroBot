@@ -3,6 +3,8 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 
 import random
+from cogs.MusicCog import MusicCog
+from cogs.SoundCog import SoundCog
 
 class GeneralCog(commands.Cog):
     def __init__(self, bot):
@@ -60,7 +62,7 @@ class GeneralCog(commands.Cog):
     async def _help(self, ctx):
         embed = discord.Embed(title="Commands", color=discord.Color.light_grey())
 
-        temp_general = GeneralCog.get_commands(bot.get_cog('GeneralCog'))
+        temp_general = GeneralCog.get_commands(self.bot.get_cog('GeneralCog'))
         general_text = ''
         for command in temp_general:
             general_text += f"{command}\n"
@@ -68,7 +70,7 @@ class GeneralCog(commands.Cog):
                         value= general_text,
                         inline=True)
 
-        temp_music = MusicCog.get_commands(bot.get_cog('MusicCog'))
+        temp_music = MusicCog.get_commands(self.bot.get_cog('MusicCog'))
         music_text = ''
         for command in temp_music:
             music_text += f"{command}\n"
@@ -76,7 +78,7 @@ class GeneralCog(commands.Cog):
                         value=music_text,
                         inline=True)
 
-        temp_sound = SoundCog.get_commands(bot.get_cog('SoundCog'))
+        temp_sound = SoundCog.get_commands(self.bot.get_cog('SoundCog'))
         sound_text = ''
         for command in temp_sound:
             sound_text += f"{command}\n"
@@ -88,7 +90,7 @@ class GeneralCog(commands.Cog):
 
     @commands.command(name='connected')
     async def _connected(self, ctx):
-        voice = get(bot.voice_clients, guild=ctx.guild)
+        voice = get(self.bot.voice_clients, guild=ctx.guild)
         if voice is None:
             await ctx.send("Not connected")
         elif voice.is_connected():
