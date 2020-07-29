@@ -17,20 +17,22 @@ import json
 sound_folder = os.getcwd() + '\sounds\\'
 help_param = ['help', 'h']
 dl_param = ['download', 'dl']
-del_param = ['delete', 'del', 'd']
-reserved_names = help_param + dl_param
+del_param = ['delete', 'del']
+reserved_names = help_param + dl_param + del_param
 
-class SoundCog(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-        self.json_file = "soundlist.txt"
+##############################     SOUND PLAYER    ##############################
+
+class SoundPlayer():
+    def __init__(self, ctx):
+        self.bot = ctx.bot
+        self.guild = ctx.guild
+        self.folder = sound_folder + str(self.guild.id) + '\\'
+        self.json_file = self.folder + "soundlist.txt"
+
+        self.volume = 0.2
         self.soundlist = {}
-        self.deserialize()  # Get existing sounds in JSON file
-        for file in os.listdir(sound_folder):  # Get other mp3 files in folder that aren't in JSON file
-            file_name = file.split('.mp3')[0]
-            if file_name not in self.soundlist.keys():
-                self.soundlist[file_name] = Sound(file_name, f"{sound_folder}{file}", 'Description missing',
-                                                  'URL missing')
+
+        self.deserialize()
 
     def serialize(self):
         data = {}
@@ -91,6 +93,7 @@ class SoundCog(commands.Cog):
             except:
                 return print("Timed out")
 
+
     async def _download(self, ctx, url, name, desc):  # TODO: Make it so JSON saves onto guild IDs
         # Error handler
         if name in reserved_names:
@@ -119,8 +122,7 @@ class SoundCog(commands.Cog):
                     return await ctx.send("Timed out. Sound not downloaded.")
 
         # Scrape HTML for .mp3 file and write
-        page = requests.get(url)
-        soup = BeautifulSoup(page.text, "html.parser")
+        soup = BeautifulSoup(requests.get(url).text, "html.parser")
         dl_url = ''
         for link in soup.find_all('a', {'class': "instant-page-extra-button"}):
             search = re.search('/media.*\.mp3', link.get('href'))
@@ -128,13 +130,13 @@ class SoundCog(commands.Cog):
                 href = search.group(0)
                 dl_url = 'https://www.myinstants.com' + href
                 break
-        mp3_file = requests.get(dl_url, allow_redirects=True)
-        mp3_file_name = f"{sound_folder}{name}.mp3"
-        with open(mp3_file_name, 'wb') as f:
-            f.write(mp3_file.content)
 
-        sound = Sound(name, mp3_file_name, desc, dl_url)
-        self.soundlist[name] = sound
+        os.makedirs(self.folder, exist_ok=True)
+        file = f"{self.folder}{name}.mp3"
+        with open(file, 'wb') as f:
+            f.write(requests.get(dl_url, allow_redirects=True).content)
+
+        self.soundlist[name] = Sound(name, file, desc, dl_url)
         self.serialize()
         self.deserialize()
         await ctx.send("Download complete!")
@@ -156,10 +158,26 @@ class SoundCog(commands.Cog):
             file = self.soundlist.pop(name, None).name + ".mp3"
         except:
             return await ctx.send("That sound doesn't exist!")
-        os.remove(sound_folder + file)
+        os.remove(self.folder + file)
         self.serialize()
         self.deserialize()
         await ctx.send(f"'{name}' deleted successfully!")
+
+##############################     SOUND COMMANDS    ##############################
+
+class SoundCog(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.players = {}
+
+    def get_player(self, ctx):
+        try:
+            player = self.players[ctx.guild.id]
+        except KeyError:
+            print(f"DEBUG: No sound player for guild {ctx.guild.id}. Creating new.")
+            player = SoundPlayer(ctx)
+            self.players[ctx.guild.id] = player
+        return player
 
     @commands.command(name='sound', aliases=['s'])
     async def _sound(self, ctx, *args):
@@ -167,13 +185,14 @@ class SoundCog(commands.Cog):
             sound = args[0]
         except:
             sound = 'h'
+        player = self.get_player(ctx)
 
         if not sound or sound in help_param: # Help
-            return await self._help(ctx)
+            return await player._help(ctx)
         elif sound in del_param: # Delete
             try: name = args[1]
             except: return await ctx.send("Please specify a sound to delete")
-            return await self._delete(ctx, name)
+            return await player._delete(ctx, name)
         elif sound in dl_param: # Download
             if len(args) > 4:
                 return await ctx.send("Invalid Input: Too many arguments passed!\n"
@@ -183,8 +202,8 @@ class SoundCog(commands.Cog):
             desc = args[3] if len(args) > 3 else 'DESC_HERE'
             try: url, name = args[1], args[2]
             except: return await ctx.send("Bad input. Ex.) 't!s dl [url] [name] [desc]'")
-            return await self._download(ctx, url, name, desc)
-        elif sound in self.soundlist.keys(): # Play
+            return await player._download(ctx, url, name, desc)
+        else:
             try: vol = args[1]
             except: vol = 20
             if type(vol) is not int:
@@ -192,7 +211,5 @@ class SoundCog(commands.Cog):
                                       "Ex.) 't!s [Sound] [Vol]\n"
                                       "Make sure to add \"quotes\" if the name has spaces in them."
                                       "Ex.) t!s \"Mission Failed\" 50")
-            return await self._play(ctx, sound, vol)
-        else:
-            return await ctx.send("Sound does not exist")
+            return await player._play(ctx, sound, vol)
 

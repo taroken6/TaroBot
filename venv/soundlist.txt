@@ -238,5 +238,29 @@
     "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\xp.mp3",
     "desc": "DESC",
     "url": "https://www.myinstants.com/media/sounds/erro.mp3"
+  },
+  "stfu": {
+    "name": "stfu",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\stfu.mp3",
+    "desc": "stfu",
+    "url": "https://www.myinstants.com/media/sounds/shut-the-fuck-up-song-filthy-frank.mp3"
+  },
+  "Mission": {
+    "name": "Mission",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\Mission.mp3",
+    "desc": "Failed",
+    "url": "https://www.myinstants.com/media/sounds/dank-meme-compilation-volume-17_cutted.mp3"
+  },
+  "Gamecube": {
+    "name": "Gamecube",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\Gamecube.mp3",
+    "desc": "Game",
+    "url": "https://www.myinstants.com/media/sounds/gamecube_intro.mp3"
+  },
+  "mission failed": {
+    "name": "mission failed",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\mission failed.mp3",
+    "desc": "mission failed",
+    "url": "https://www.myinstants.com/media/sounds/dank-meme-compilation-volume-17_cutted.mp3"
   }
 }
