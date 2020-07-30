@@ -3,18 +3,20 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
 
-import time
-import os
 from SoundObj import Sound
 import requests
 from lxml import html
 from bs4 import BeautifulSoup
 import re
+import shutil
+import time
+import os
 
 import pickle
 import json
 
 sound_folder = os.getcwd() + '\sounds\\'
+default_sound_folder = sound_folder + 'default\\'
 help_param = ['help', 'h']
 dl_param = ['download', 'dl']
 del_param = ['delete', 'del']
@@ -27,30 +29,17 @@ class SoundPlayer():
         self.bot = ctx.bot
         self.guild = ctx.guild
 
-        self.folder = self.get_folder(ctx)
+        self.folder = self.get_folder()
         self.json_file = self.folder + "soundlist.txt"
         self.volume = 0.2
         self.soundlist = {}
+        self.deserialize()
 
-    def get_folder(self, ctx):
+    def get_folder(self):
         folder = sound_folder + str(self.guild.id) + "\\"
         if not os.path.isdir(folder):
-            os.makedirs(folder, exist_ok=True)
+            shutil.copytree(default_sound_folder, folder)
         return folder
-
-    async def dl_default_sounds(self, ctx):
-        '''
-        Default noises for new guilds to play with before they start adding new sounds of their own
-        '''
-        message = await ctx.send("First time setup: Downloading 6 sounds...")
-        await self._download(ctx, "https://www.myinstants.com/instant/roblox-death-78252/", "oof", "Roblox 'OOF'")
-        await self._download(ctx, "https://www.myinstants.com/instant/the-nut-button-20451/", "nut", "nut")
-        await self._download(ctx, "https://www.myinstants.com/instant/bruh/", "bruh", "bruh")
-        await self._download(ctx, "https://www.myinstants.com/instant/my-name-is-jeff/", "jeff", "My name's Jeff")
-        await self._download(ctx, "https://www.myinstants.com/instant/nopeavi/", "nope", "TF2's engineer's nope.avi")
-        await self._download(ctx, "https://www.myinstants.com/instant/hey-listen/", "hey", "Navi's 'Hey! Listen!'")
-        await message.edit(content="Setup complete!")
-        self.serialize()
 
     def serialize(self):
         data = {}
@@ -197,8 +186,6 @@ class SoundCog(commands.Cog):
             print(f"DEBUG: No sound player for guild {ctx.guild.id}. Creating new.")
             player = SoundPlayer(ctx)
             self.players[ctx.guild.id] = player
-        print(len(os.listdir(player.folder)))
-        if len(os.listdir(player.folder)) == 0: await player.dl_default_sounds(ctx)
         return player
 
     @commands.command(name='sound', aliases=['s'])
