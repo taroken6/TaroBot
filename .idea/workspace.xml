@@ -2,58 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acdb4581-508a-4820-8370-81c8045d4a05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/cogs/SoundCog.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/cogs/SoundCog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/718539693125533788/bruh.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/718539693125533788/hey.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/718539693125533788/jeff.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/718539693125533788/nope.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/718539693125533788/nut.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/718539693125533788/oof.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/718539693125533788/soundlist.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/Gamecube.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/Mission.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/airhorn.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/anime_wow.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/bully_me.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/clench.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/deez_nuts.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/disc_notif.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/dude.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/engi_nope.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/fart.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/fast_af.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/grapefruit.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/hour_later.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/mlg_horn.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/nigeru.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/not_funny.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/oh_my_gah.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/oof.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/pbb.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/pika.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/pretty_good.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/risitas.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/shutup.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/skype_call.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/smash.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/snort.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/stfu.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/subaluwa.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/succ.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/test1.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/tidus.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/triple.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/typing.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/wall.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/weak_horn.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/woah.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/wow.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/wrong_house.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/xp.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/yeah_boi.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/sounds/old_sounds/yeet.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/Gamecube.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/Mission.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/airhorn.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/anime_wow.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/bully_me.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/clench.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/deez_nuts.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/disc_notif.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/dude.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/engi_nope.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/fart.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/fast_af.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/grapefruit.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/hour_later.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/mlg_horn.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/nigeru.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/not_funny.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/oh_my_gah.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/oof.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/pbb.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/pika.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/pretty_good.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/risitas.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/shutup.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/skype_call.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/smash.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/snort.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/stfu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/subaluwa.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/succ.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/test1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/tidus.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/triple.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/typing.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/wall.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/weak_horn.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/woah.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/wow.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/wrong_house.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/xp.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/yeah_boi.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/temp/yeet.mp3" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="306">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -90,8 +82,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="187" column="44" lean-forward="true" selection-start-line="187" selection-start-column="44" selection-end-line="187" selection-end-column="44" />
+            <state relative-caret-position="537">
+              <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -102,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="123" column="83" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
+            <state relative-caret-position="1411">
+              <caret line="107" column="81" lean-forward="true" selection-start-line="107" selection-start-column="81" selection-end-line="107" selection-end-column="81" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -530,10 +522,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/SoundObj.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/venv/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
@@ -542,25 +541,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="123" column="83" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
+        <state relative-caret-position="1411">
+          <caret line="107" column="81" lean-forward="true" selection-start-line="107" selection-start-column="81" selection-end-line="107" selection-end-column="81" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/SoundObj.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="187" column="44" lean-forward="true" selection-start-line="187" selection-start-column="44" selection-end-line="187" selection-end-column="44" />
+        <state relative-caret-position="537">
+          <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>

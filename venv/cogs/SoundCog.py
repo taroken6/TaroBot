@@ -145,7 +145,7 @@ class SoundPlayer():
 
         self.soundlist[name] = Sound(name, file, desc, dl_url)
         self.serialize()
-        await ctx.send("Download complete!")
+        await ctx.send(f"'{name}' downloaded successfully!")
 
     async def _play(self, ctx, sound, vol=20):
         if not sound in self.soundlist:
@@ -213,12 +213,7 @@ class SoundCog(commands.Cog):
             except: return await ctx.send("Bad input. Ex.) 't!s dl [url] [name] [desc]'")
             return await player._download(ctx, url, name, desc)
         else:
-            try: vol = args[1]
+            try: vol = int(args[1])
             except: vol = 20
-            if type(vol) is not int:
-                return await ctx.send("Bad Input.\n"
-                                      "Ex.) 't!s [Sound] [Vol]\n"
-                                      "Make sure to add \"quotes\" if the name has spaces in them."
-                                      "Ex.) t!s \"Mission Failed\" 50")
             return await player._play(ctx, sound, vol)
 
