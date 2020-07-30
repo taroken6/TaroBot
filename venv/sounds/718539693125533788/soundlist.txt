@@ -1,0 +1,38 @@
+{
+  "oof": {
+    "name": "oof",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\718539693125533788\\oof.mp3",
+    "desc": "Roblox 'OOF'",
+    "url": "https://www.myinstants.com/media/sounds/roblox-death-sound_ytkBL7X.mp3"
+  },
+  "nut": {
+    "name": "nut",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\718539693125533788\\nut.mp3",
+    "desc": "nut",
+    "url": "https://www.myinstants.com/media/sounds/nut_ZKo5FA9.mp3"
+  },
+  "bruh": {
+    "name": "bruh",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\718539693125533788\\bruh.mp3",
+    "desc": "bruh",
+    "url": "https://www.myinstants.com/media/sounds/movie_1.mp3"
+  },
+  "jeff": {
+    "name": "jeff",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\718539693125533788\\jeff.mp3",
+    "desc": "My name's Jeff",
+    "url": "https://www.myinstants.com/media/sounds/ringtone_20.mp3"
+  },
+  "nope": {
+    "name": "nope",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\718539693125533788\\nope.mp3",
+    "desc": "TF2's engineer's nope.avi",
+    "url": "https://www.myinstants.com/media/sounds/engineer_no01.mp3"
+  },
+  "hey": {
+    "name": "hey",
+    "file": "C:\\Users\\audie\\PycharmProjects\\TaroBot\\venv\\sounds\\718539693125533788\\hey.mp3",
+    "desc": "Navi's 'Hey! Listen!'",
+    "url": "https://www.myinstants.com/media/sounds/hey_listen.mp3"
+  }
+}

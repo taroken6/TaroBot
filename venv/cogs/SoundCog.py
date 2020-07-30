@@ -26,13 +26,31 @@ class SoundPlayer():
     def __init__(self, ctx):
         self.bot = ctx.bot
         self.guild = ctx.guild
-        self.folder = sound_folder + str(self.guild.id) + '\\'
-        self.json_file = self.folder + "soundlist.txt"
 
+        self.folder = self.get_folder(ctx)
+        self.json_file = self.folder + "soundlist.txt"
         self.volume = 0.2
         self.soundlist = {}
 
-        self.deserialize()
+    def get_folder(self, ctx):
+        folder = sound_folder + str(self.guild.id) + "\\"
+        if not os.path.isdir(folder):
+            os.makedirs(folder, exist_ok=True)
+        return folder
+
+    async def dl_default_sounds(self, ctx):
+        '''
+        Default noises for new guilds to play with before they start adding new sounds of their own
+        '''
+        message = await ctx.send("First time setup: Downloading 6 sounds...")
+        await self._download(ctx, "https://www.myinstants.com/instant/roblox-death-78252/", "oof", "Roblox 'OOF'")
+        await self._download(ctx, "https://www.myinstants.com/instant/the-nut-button-20451/", "nut", "nut")
+        await self._download(ctx, "https://www.myinstants.com/instant/bruh/", "bruh", "bruh")
+        await self._download(ctx, "https://www.myinstants.com/instant/my-name-is-jeff/", "jeff", "My name's Jeff")
+        await self._download(ctx, "https://www.myinstants.com/instant/nopeavi/", "nope", "TF2's engineer's nope.avi")
+        await self._download(ctx, "https://www.myinstants.com/instant/hey-listen/", "hey", "Navi's 'Hey! Listen!'")
+        await message.edit(content="Setup complete!")
+        self.serialize()
 
     def serialize(self):
         data = {}
@@ -45,7 +63,8 @@ class SoundPlayer():
             sl.close()
 
     def deserialize(self):
-        with open(self.json_file) as f:
+        if os.path.isfile(self.json_file):
+            f = open(self.json_file)
             payload = json.load(f)
             for key, value in payload.items():
                 if not key in self.soundlist:
@@ -131,17 +150,18 @@ class SoundPlayer():
                 dl_url = 'https://www.myinstants.com' + href
                 break
 
-        os.makedirs(self.folder, exist_ok=True)
         file = f"{self.folder}{name}.mp3"
-        with open(file, 'wb') as f:
-            f.write(requests.get(dl_url, allow_redirects=True).content)
+        f = open(file, 'wb')
+        f.write(requests.get(dl_url, allow_redirects=True).content)
 
         self.soundlist[name] = Sound(name, file, desc, dl_url)
         self.serialize()
-        self.deserialize()
         await ctx.send("Download complete!")
 
     async def _play(self, ctx, sound, vol=20):
+        if not sound in self.soundlist:
+            return await ctx.send("That sound doesn't exist!\n Please use t!s help to view all available sounds")
+
         vol = (float)(vol) / 100
         voice = ctx.voice_client
         if not voice:
@@ -158,9 +178,9 @@ class SoundPlayer():
             file = self.soundlist.pop(name, None).name + ".mp3"
         except:
             return await ctx.send("That sound doesn't exist!")
+
         os.remove(self.folder + file)
         self.serialize()
-        self.deserialize()
         await ctx.send(f"'{name}' deleted successfully!")
 
 ##############################     SOUND COMMANDS    ##############################
@@ -170,13 +190,15 @@ class SoundCog(commands.Cog):
         self.bot = bot
         self.players = {}
 
-    def get_player(self, ctx):
+    async def get_player(self, ctx):
         try:
             player = self.players[ctx.guild.id]
         except KeyError:
             print(f"DEBUG: No sound player for guild {ctx.guild.id}. Creating new.")
             player = SoundPlayer(ctx)
             self.players[ctx.guild.id] = player
+        print(len(os.listdir(player.folder)))
+        if len(os.listdir(player.folder)) == 0: await player.dl_default_sounds(ctx)
         return player
 
     @commands.command(name='sound', aliases=['s'])
@@ -185,7 +207,7 @@ class SoundCog(commands.Cog):
             sound = args[0]
         except:
             sound = 'h'
-        player = self.get_player(ctx)
+        player = await self.get_player(ctx)
 
         if not sound or sound in help_param: # Help
             return await player._help(ctx)

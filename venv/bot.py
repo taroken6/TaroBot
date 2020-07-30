@@ -21,10 +21,6 @@ bot.remove_command('help')
 async def jerry(ctx):  # Test command. May remove later
     await ctx.send('jERry', file=discord.File(IMAGE_FOLDER + 'jerry.jpg'))
 
-@bot.command()
-async def guildid(ctx):
-    await ctx.send(f"Guild id = {ctx.message.guild.id}")
-
 def setup(bot):
     bot.add_cog(MusicCog(bot))
     bot.add_cog(SoundCog(bot))

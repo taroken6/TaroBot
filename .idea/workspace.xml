@@ -2,7 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acdb4581-508a-4820-8370-81c8045d4a05" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/cogs/GeneralCog.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/cogs/GeneralCog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/cogs/SoundCog.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/cogs/SoundCog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sound.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/airhorn.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/anime_wow.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/bully_me.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/clench.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/deez_nuts.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/disc_notif.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/dude.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/engi_nope.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/fast_af.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/grapefruit.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/hour_later.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/mlg_horn.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/not_funny.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/oh_my_gah.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/oof.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/pbb.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/pika.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/pretty_good.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/risitas.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/shutup.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/skype_call.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/snort.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/subaluwa.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/succ.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/test1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/tidus.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/triple.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/typing.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/weak_horn.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/woah.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/wow.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/wrong_house.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/yeah_boi.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/yeet.mp3" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="19" selection-end-column="14" />
+            <state relative-caret-position="357">
+              <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -27,17 +65,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/cogs/GeneralCog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="238">
+              <caret line="14" column="98" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+            <state relative-caret-position="282">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -48,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-160">
-              <caret line="123" column="83" lean-forward="true" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
+            <state relative-caret-position="1904">
+              <caret line="123" column="83" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -62,6 +103,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
               <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -93,10 +144,10 @@
         <option value="$PROJECT_DIR$/venv/cogs/Music.py" />
         <option value="$PROJECT_DIR$/venv/SoundObj.py" />
         <option value="$PROJECT_DIR$/venv/soundlist.txt" />
-        <option value="$PROJECT_DIR$/venv/cogs/GeneralCog.py" />
         <option value="$PROJECT_DIR$/venv/cogs/MusicCog.py" />
-        <option value="$PROJECT_DIR$/venv/cogs/SoundCog.py" />
         <option value="$PROJECT_DIR$/venv/bot.py" />
+        <option value="$PROJECT_DIR$/venv/cogs/GeneralCog.py" />
+        <option value="$PROJECT_DIR$/venv/cogs/SoundCog.py" />
       </list>
     </option>
   </component>
@@ -134,6 +185,12 @@
               <item name="TaroBot" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TaroBot" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="sounds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
@@ -299,13 +356,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16385669" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.3109426" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.3109426" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -431,6 +489,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="123" column="83" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/venv/SoundObj.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -438,40 +506,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/cogs/GeneralCog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="123" column="83" lean-forward="true" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/sounds/718539693125533788/soundlist.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
+    <entry file="file://$PROJECT_DIR$/venv/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+        <state relative-caret-position="357">
+          <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/bot.py">
+    <entry file="file://$PROJECT_DIR$/venv/cogs/GeneralCog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="19" selection-end-column="14" />
+        <state relative-caret-position="238">
+          <caret line="14" column="98" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
