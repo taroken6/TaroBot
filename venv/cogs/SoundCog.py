@@ -52,12 +52,10 @@ class SoundPlayer():
             sl.close()
 
     def deserialize(self):
-        if os.path.isfile(self.json_file):
-            f = open(self.json_file)
-            payload = json.load(f)
-            for key, value in payload.items():
-                if not key in self.soundlist:
-                    self.soundlist[key] = Sound(value['name'], value['file'], value['desc'], value['url'])
+        f = open(self.json_file)
+        payload = json.load(f)
+        for key, value in payload.items():
+            self.soundlist[key] = Sound(value['name'], value['file'], value['desc'], value['url'])
 
     async def _help(self, ctx):
         embeds = []
@@ -81,25 +79,24 @@ class SoundPlayer():
             embeds[page].add_field(name=self.soundlist[key].name,
                                    value=self.soundlist[key].desc,
                                    inline=True)
-
-        left_arrow, right_arrow = '⬅', '➡'
         message = await ctx.send(embed=embeds[0])
-        await message.add_reaction(left_arrow)
-        await message.add_reaction(right_arrow)
+        await message.add_reaction('⬅')
+        await message.add_reaction('➡')
+
         page = 0
         reaction = ''
         message_timeout = time.time() + 60
         while time.time() < message_timeout:
             if reaction and reaction.member.id != self.bot.user.id:
-                if reaction.emoji.name == left_arrow:
+                if reaction.emoji.name == '⬅':
                     page -= 1 if page > 0 else 1 - pages
-                if reaction.emoji.name == right_arrow:
+                if reaction.emoji.name == '➡':
                     page += 1 if page < pages - 1 else 1 - pages
                 await message.edit(embed=embeds[page])
             try:
                 reaction = await self.bot.wait_for('raw_reaction_add', timeout=60.0)
             except:
-                return print("Timed out")
+                return
 
 
     async def _download(self, ctx, url, name, desc):  # TODO: Make it so JSON saves onto guild IDs
@@ -109,20 +106,18 @@ class SoundPlayer():
         if 'myinstants.com/instant/' not in url:
             return await ctx.send("URL must contain 'myinstants.com/instant/'")
         if name in self.soundlist.keys():
-            msg = await ctx.send(f"The sound '{name}' already exists! Would you like to overwrite?")
-            check = '✅'
-            x = '❌'
-            await msg.add_reaction(check)
-            await msg.add_reaction(x)
-
             # Prompt to overwrite
+            msg = await ctx.send(f"The sound '{name}' already exists! Would you like to overwrite?")
+            await msg.add_reaction('✅')
+            await msg.add_reaction('❌')
+
             reaction = ''
-            message_timeout = time.time() + 60
-            while time.time() < message_timeout:
+            msg_timeout = time.time() + 60
+            while time.time() < msg_timeout:
                 if reaction and reaction.member.id != self.bot.user.id:
-                    if reaction.emoji.name == check:
+                    if reaction.emoji.name == '✅':
                         break
-                    if reaction.emoji.name == x:
+                    if reaction.emoji.name == '❌':
                         return await ctx.send("Download cancelled.")
                 try:
                     reaction = await self.bot.wait_for('raw_reaction_add', timeout=60.0)
@@ -138,7 +133,6 @@ class SoundPlayer():
                 href = search.group(0)
                 dl_url = 'https://www.myinstants.com' + href
                 break
-
         file = f"{self.folder}{name}.mp3"
         f = open(file, 'wb')
         f.write(requests.get(dl_url, allow_redirects=True).content)
@@ -146,18 +140,18 @@ class SoundPlayer():
         self.soundlist[name] = Sound(name, file, desc, dl_url)
         self.serialize()
         await ctx.send(f"'{name}' downloaded successfully!")
+        await ctx.send(f"Play by typing 't!s \"{name}\"''")
 
     async def _play(self, ctx, sound, vol=20):
         if not sound in self.soundlist:
-            return await ctx.send("That sound doesn't exist!\n Please use t!s help to view all available sounds")
+            return await ctx.send("That sound doesn't exist!\n Type 't!s help' to view all available sounds")
 
         vol = (float)(vol) / 100
         voice = ctx.voice_client
         if not voice:
             if ctx.message.author.voice:
-                channel = ctx.message.author.voice.channel
-                await channel.connect()
-                voice = get(self.bot.voice_clients, guild=ctx.guild)
+                await ctx.message.author.voice.channel.connect()
+                voice = ctx.voice_client
             else:
                 return await ctx.send("Please join a voice channel")
         voice.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.soundlist[sound].file), vol), after=None)
