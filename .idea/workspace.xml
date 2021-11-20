@@ -2,87 +2,133 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acdb4581-508a-4820-8370-81c8045d4a05" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/TaroBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TaroBot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/cogs/SoundCog.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/cogs/SoundCog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord.py-1.3.4.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord.py-1.3.4.dist-info/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord.py-1.3.4.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord.py-1.3.4.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord.py-1.3.4.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord.py-1.3.4.dist-info/authors.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord.py-1.3.4.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/abc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/activity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/appinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/appinfo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/asset.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/asset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/audit_logs.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/audit_logs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/backoff.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/backoff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/bin/libopus-0.x64.dll" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/bin/libopus-0.x64.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/bin/libopus-0.x86.dll" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/bin/libopus-0.x86.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/channel.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/channel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/colour.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/colour.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/context_managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/context_managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/embeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/embeds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/emoji.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/emoji.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/enums.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/errors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/_types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/cog.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/cog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/context.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/context.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/converter.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/converter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/cooldowns.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/cooldowns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/errors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/help.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/tasks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/tasks/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/file.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/flags.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/flags.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/gateway.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/gateway.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/guild.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/guild.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/http.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/http.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/invite.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/invite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/iterators.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/iterators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/member.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/member.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/message.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/mixins.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/mixins.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/oggparse.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/oggparse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/opus.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/opus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/partial_emoji.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/partial_emoji.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/permissions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/raw_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/raw_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/reaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/reaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/relationship.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/relationship.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/role.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/role.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/shard.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/shard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/team.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/team.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/voice_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/voice_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/webhook.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/webhook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/discord/widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/discord/widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/DESCRIPTION.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/entry_points.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl-2020.6.6.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/downloader/hls.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/downloader/hls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/downloader/http.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/downloader/http.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/bellmedia.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/bellmedia.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/biqle.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/biqle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/brightcove.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/brightcove.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/extractors.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/extractors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/facebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/facebook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/generic.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/generic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/googledrive.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/googledrive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/kaltura.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/kaltura.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/nrk.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/nrk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/pornhub.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/pornhub.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/redbulltv.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/redbulltv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/redtube.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/redtube.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/rtlnl.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/rtlnl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/soundcloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/soundcloud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/srgssr.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/srgssr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/svt.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/svt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/telequebec.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/telequebec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/twitch.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/twitch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/wistia.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/wistia.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/xhamster.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/xhamster.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/youtube.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/extractor/youtube.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/postprocessor/embedthumbnail.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/postprocessor/embedthumbnail.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/youtube-dl.exe" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/youtube-dl.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/SongObj.py" beforeDir="false" afterPath="$PROJECT_DIR$/SongObj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/SoundObj.py" beforeDir="false" afterPath="$PROJECT_DIR$/SoundObj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/cogs/GeneralCog.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/GeneralCog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/cogs/MusicCog.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/MusicCog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/cogs/SoundCog.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/SoundCog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/images/jerry.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/jerry.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/soundlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/soundlist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/default/bruh.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/default/bruh.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/default/hey.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/default/hey.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/default/jeff.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/default/jeff.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/default/nope.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/default/nope.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/default/nut.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/default/nut.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/default/oof.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/default/oof.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/sounds/default/soundlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/default/soundlist.txt" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/bot.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/cogs/GeneralCog.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-721">
-              <caret line="14" column="98" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="142" column="52" selection-start-line="142" selection-start-column="52" selection-end-line="142" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-                <element signature="e#4101#4876#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-77">
-              <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/SoundObj.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor />
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -94,10 +140,14 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>Song</find>
+      <find>mp3</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/cogs/MusicCog.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -109,18 +159,21 @@
         <option value="$PROJECT_DIR$/venv/cogs/Music.py" />
         <option value="$PROJECT_DIR$/venv/SoundObj.py" />
         <option value="$PROJECT_DIR$/venv/soundlist.txt" />
-        <option value="$PROJECT_DIR$/venv/cogs/MusicCog.py" />
         <option value="$PROJECT_DIR$/venv/cogs/GeneralCog.py" />
-        <option value="$PROJECT_DIR$/venv/bot.py" />
         <option value="$PROJECT_DIR$/venv/cogs/SoundCog.py" />
+        <option value="$PROJECT_DIR$/venv/bot.py" />
+        <option value="$PROJECT_DIR$/venv/cogs/MusicCog.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
+  <component name="ProjectId" id="1yCeeHTsJ8pevgw349LECG6w1B3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -157,28 +210,6 @@
               <item name="venv" type="462c0819:PsiDirectoryNode" />
               <item name="sounds" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (TaroBot) &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (TaroBot) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TaroBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 (TaroBot) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="cogs" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -186,42 +217,35 @@
       <pane id="Scope" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="restartRequiresConfirmation" value="false" />
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/bot.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\audie\PycharmProjects\TaroBot" />
       <recent name="C:\Users\audie\PycharmProjects\TaroBot\venv\cogs" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.example_bot">
-    <configuration name="TaroBot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.bot">
+    <configuration name="bot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="TaroBot" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\audie\PycharmProjects\TaroBot\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$" />
+      <option name="SCRIPT_NAME" value="C:\Users\audie\PycharmProjects\TaroBot\bot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -242,7 +266,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\audie\PycharmProjects\TaroBot\venv\bot.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\audie\PycharmProjects\TaroBot\bot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -252,7 +276,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.TaroBot" />
+      <item itemvalue="Python.bot" />
       <item itemvalue="Python.example_bot" />
     </list>
     <recent_temporary>
@@ -261,6 +285,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -320,7 +345,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16385669" />
@@ -328,7 +353,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.3109426" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" weight="0.3108253" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -343,6 +368,7 @@
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First commit" />
     <MESSAGE value="Commit #2: Pause and Resume added&#10;Error checking" />
     <MESSAGE value="Commit #3: Sound player" />
@@ -362,13 +388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/discord/voice_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="381" selection-start-line="381" selection-end-line="381" />
         </state>
       </provider>
     </entry>
@@ -408,13 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/bot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="891" selection-start-line="891" selection-end-line="891" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/discord/client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -424,13 +436,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/YoutubeDL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="1041" column="30" selection-start-line="1041" selection-start-column="30" selection-end-line="1041" selection-end-column="30" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/json/encoder.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -464,13 +469,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/bot.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/discord/voice_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="407">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/discord/ext/commands/bot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="902" selection-start-line="902" selection-end-line="902" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/youtube_dl/YoutubeDL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="594" selection-start-line="594" selection-end-line="594" />
         </state>
       </provider>
     </entry>
@@ -484,25 +500,24 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor />
+          <first_editor>
+            <caret column="9" selection-start-column="9" selection-end-column="9" />
+          </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
+    <entry file="file://$PROJECT_DIR$/venv/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/cogs/GeneralCog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-721">
-          <caret line="14" column="98" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
+        <state relative-caret-position="527">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
@@ -511,11 +526,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/cogs/SoundCog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="142" column="52" selection-start-line="142" selection-start-column="52" selection-end-line="142" selection-end-column="52" />
+        <state relative-caret-position="3213">
+          <caret line="204" column="60" selection-start-line="204" selection-start-column="60" selection-end-line="204" selection-end-column="60" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#4101#4876#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/cogs/MusicCog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="51" column="70" selection-start-line="51" selection-start-column="67" selection-end-line="51" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
