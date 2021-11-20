@@ -1,4 +1,4 @@
-# Android App
+# Discord Bot - Taro Bot
 Start date: June 05, 2020  
 An entertainment bot that carries out user’s commands through asynchronous tasks for the messaging app ‘Discord’.  
 The bot downloads YouTube URLs as mp3 files and queues it for playback.  
